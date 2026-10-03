@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PANIIT USA — Talks &amp; Webinars</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f8fafc;
+      color: #1e293b;
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    header {
+      background: linear-gradient(135deg, #1a3a5c 0%, #0f2540 100%);
+      color: white;
+      padding: 2.5rem 2rem 2rem;
+      text-align: center;
+      border-bottom: 4px solid #f97316;
+    }
+    header .org-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #f97316;
+      margin-bottom: 0.4rem;
+    }
+    header h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      color: #94a3b8;
+      font-size: 1rem;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* ── Main ── */
+    main {
+      max-width: 1050px;
+      margin: 2.5rem auto;
+      padding: 0 1.5rem 4rem;
+    }
+
+    /* ── Stats row ── */
+    .stats {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    .stat-card {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 0.9rem 1.4rem;
+      min-width: 130px;
+      text-align: center;
+    }
+    .stat-card .num { font-size: 1.8rem; font-weight: 700; color: #1a3a5c; }
+    .stat-card .lbl { font-size: 0.75rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* ── Table wrapper ── */
+    .table-wrap {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+    }
+
+    thead tr {
+      background: #1a3a5c;
+      color: white;
+    }
+    thead th {
+      padding: 0.85rem 1.1rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid #f1f5f9;
+      transition: background 0.15s;
+    }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: #f8faff; }
+
+    td {
+      padding: 0.85rem 1.1rem;
+      vertical-align: middle;
+    }
+
+    /* Date cell */
+    .td-date {
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+      color: #475569;
+      font-size: 0.85rem;
+    }
+    .date-badge {
+      display: inline-block;
+      background: #eff6ff;
+      color: #1d4ed8;
+      border-radius: 6px;
+      padding: 0.2rem 0.55rem;
+      font-weight: 600;
+      font-size: 0.8rem;
+    }
+
+    /* Speaker cell */
+    .speaker {
+      font-weight: 600;
+      color: #0f2540;
+    }
+
+    /* Topic cell */
+    .topic {
+      color: #334155;
+      line-height: 1.4;
+    }
+    .no-data {
+      color: #cbd5e1;
+      font-style: italic;
+      font-size: 0.82rem;
+    }
+
+    /* Links column */
+    .links-cell {
+      white-space: nowrap;
+    }
+    .icon-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.35rem 0.7rem;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-decoration: none;
+      margin-right: 0.35rem;
+      border: 1.5px solid transparent;
+      transition: all 0.15s;
+    }
+    .icon-link svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    .link-slides {
+      background: #fff7ed;
+      color: #c2410c;
+      border-color: #fed7aa;
+    }
+    .link-slides:hover { background: #f97316; color: white; border-color: #f97316; }
+
+    .link-video {
+      background: #fef2f2;
+      color: #dc2626;
+      border-color: #fecaca;
+    }
+    .link-video:hover { background: #dc2626; color: white; border-color: #dc2626; }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      color: #94a3b8;
+      font-size: 0.8rem;
+    }
+    footer a { color: #64748b; }
+
+    @media (max-width: 680px) {
+      header h1 { font-size: 1.5rem; }
+      thead th, td { padding: 0.65rem 0.7rem; font-size: 0.82rem; }
+      .icon-link span { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="org-name">PAN IIT USA</div>
+  <h1>Talks &amp; Webinars</h1>
+  <p>A curated series of talks by IIT alumni — covering AI, quantum computing, and emerging technology.</p>
+</header>
+
+<main>
+
+  <div class="stats">
+    <div class="stat-card">
+      <div class="num" id="stat-talks">—</div>
+      <div class="lbl">Talks</div>
+    </div>
+    <div class="stat-card">
+      <div class="num" id="stat-videos">—</div>
+      <div class="lbl">Videos</div>
+    </div>
+    <div class="stat-card">
+      <div class="num" id="stat-slides">—</div>
+      <div class="lbl">Slide Decks</div>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table id="talks-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Speaker</th>
+          <th>Topic</th>
+          <th>Resources</th>
+        </tr>
+      </thead>
+      <tbody id="talks-body">
+        <!-- Populated by JS below -->
+      </tbody>
+    </table>
+  </div>
+
+</main>
+
+<footer>
+  <p>PAN IIT USA &nbsp;·&nbsp; <a href="https://github.com/paniit-usa" target="_blank">github.com/paniit-usa</a></p>
+</footer>
+
+<script>
+  /* ── Talk data ── */
+  /* To add a new row, append an object to this array.
+     Leave slides or video as "" if not available. */
+  const talks = [
+    {
+      date: "2026-10-01",
+      speaker: "Prof. Giri Narasimhan",
+      topic: "",
+      slides: "",
+      video: ""
+    },
+    {
+      date: "2026-09-17",
+      speaker: "Dr. Roopesh Mathur",
+      topic: "From Qubits to Quantum Computing",
+      slides: "",
+      video: "https://www.youtube.com/watch?v=C3IJcbLYPCk"
+    },
+    {
+      date: "2026-08-28",
+      speaker: "Kannan Govindarajan",
+      topic: "AI in Healthcare — Hype, Hope and Evidence",
+      slides: "",
+      video: "https://youtu.be/6lQDw3cJ390"
+    },
+    {
+      date: "2026-06-25",
+      speaker: "Lokesh Johri",
+      topic: "Bandits to Reinforcement Learning",
+      slides: "https://github.com/ljohri/Bandits-to-RL-Intro/blob/main/docs/K-Armed-Bandit-Basics.pptx",
+      video: ""
+    },
+    {
+      date: "2026-06-11",
+      speaker: "Himanshu Verma",
+      topic: "Applied Generative AI",
+      slides: "",
+      video: ""
+    },
+    {
+      date: "2026-04-27",
+      speaker: "Rahul Tripathi",
+      topic: "Fine-tuning Small Language Models (SLMs)",
+      slides: "https://ljohri.github.io/ai-info/assets/files/fine-tuning-small-language-models.pdf",
+      video: "https://youtu.be/ul9dONg-3mM"
+    }
+  ];
+
+  /* ── Helpers ── */
+  function fmtDate(iso) {
+    const d = new Date(iso + "T00:00:00");
+    return d.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
+  }
+
+  const slideIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`;
+  const videoIcon = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C.488 3.45.029 5.804 0 12c.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0C23.512 20.55 23.971 18.196 24 12c-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 4-8 4z"/></svg>`;
+
+  /* ── Render ── */
+  const tbody = document.getElementById("talks-body");
+  let videoCount = 0, slideCount = 0;
+
+  talks.forEach(t => {
+    const tr = document.createElement("tr");
+
+    const links = [
+      t.slides ? `<a class="icon-link link-slides" href="${t.slides}" target="_blank" rel="noopener">${slideIcon}<span>Slides</span></a>` : "",
+      t.video  ? `<a class="icon-link link-video"  href="${t.video}"  target="_blank" rel="noopener">${videoIcon}<span>Video</span></a>`  : ""
+    ].join("");
+
+    if (t.video)  videoCount++;
+    if (t.slides) slideCount++;
+
+    tr.innerHTML = `
+      <td class="td-date"><span class="date-badge">${fmtDate(t.date)}</span></td>
+      <td><span class="speaker">${t.speaker}</span></td>
+      <td class="topic">${t.topic || '<span class="no-data">TBA</span>'}</td>
+      <td class="links-cell">${links || '<span class="no-data">—</span>'}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  /* ── Stats ── */
+  document.getElementById("stat-talks").textContent  = talks.length;
+  document.getElementById("stat-videos").textContent = videoCount;
+  document.getElementById("stat-slides").textContent = slideCount;
+</script>
+
+</body>
+</html>
