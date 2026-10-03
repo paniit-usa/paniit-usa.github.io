@@ -18,9 +18,26 @@
     header {
       background: linear-gradient(135deg, #1a3a5c 0%, #0f2540 100%);
       color: white;
-      padding: 2.5rem 2rem 2rem;
-      text-align: center;
+      padding: 1.75rem 2rem;
       border-bottom: 4px solid #f97316;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    header .logo {
+      flex-shrink: 0;
+    }
+    header .logo img {
+      width: 72px;
+      height: 72px;
+      border-radius: 10px;
+      display: block;
+      object-fit: contain;
+      background: white;
+      padding: 4px;
+    }
+    header .header-text {
+      flex: 1;
     }
     header .org-name {
       font-size: 0.85rem;
@@ -28,18 +45,22 @@
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: #f97316;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.3rem;
     }
     header h1 {
-      font-size: 2.2rem;
+      font-size: 1.9rem;
       font-weight: 700;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.3rem;
     }
     header p {
       color: #94a3b8;
-      font-size: 1rem;
+      font-size: 0.95rem;
       max-width: 560px;
-      margin: 0 auto;
+    }
+    @media (max-width: 480px) {
+      header { gap: 1rem; }
+      header .logo img { width: 52px; height: 52px; }
+      header h1 { font-size: 1.4rem; }
     }
 
     /* ── Main ── */
@@ -214,9 +235,14 @@
 <body>
 
 <header>
-  <div class="org-name">PAN IIT USA</div>
-  <h1>Talks &amp; Webinars</h1>
-  <p>A curated series of talks by IIT alumni — covering AI, quantum computing, and emerging technology.</p>
+  <div class="logo">
+    <img src="assets/public/logo.jpg" alt="PANIIT USA logo" />
+  </div>
+  <div class="header-text">
+    <div class="org-name">PAN IIT USA</div>
+    <h1>Talks &amp; Webinars</h1>
+    <p>A curated series of talks by IIT alumni — covering AI, quantum computing, and emerging technology.</p>
+  </div>
 </header>
 
 <main>
