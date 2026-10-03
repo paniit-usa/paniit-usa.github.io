@@ -1,0 +1,9 @@
+# Windows metadata
+*.Zone.Identifier
+*:Zone.Identifier
+
+# Python venv
+.venv/
+
+# Temp files
+docs/~$*
