@@ -49,23 +49,43 @@
       padding: 0 1.5rem 4rem;
     }
 
-    /* ── Stats row ── */
-    .stats {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
+    /* ── Search bar ── */
+    .search-wrap {
+      margin-bottom: 1.5rem;
+      position: relative;
     }
-    .stat-card {
-      background: white;
-      border: 1px solid #e2e8f0;
+    .search-wrap svg {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 17px; height: 17px;
+      color: #94a3b8;
+      pointer-events: none;
+    }
+    #search {
+      width: 100%;
+      padding: 0.75rem 1rem 0.75rem 2.75rem;
+      font-size: 0.95rem;
+      border: 1.5px solid #e2e8f0;
       border-radius: 10px;
-      padding: 0.9rem 1.4rem;
-      min-width: 130px;
-      text-align: center;
+      background: white;
+      color: #1e293b;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
     }
-    .stat-card .num { font-size: 1.8rem; font-weight: 700; color: #1a3a5c; }
-    .stat-card .lbl { font-size: 0.75rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.08em; }
+    #search:focus {
+      border-color: #1a3a5c;
+      box-shadow: 0 0 0 3px rgba(26,58,92,0.1);
+    }
+    #search::placeholder { color: #94a3b8; }
+    .no-results {
+      text-align: center;
+      padding: 2.5rem;
+      color: #94a3b8;
+      font-style: italic;
+      display: none;
+    }
 
     /* ── Table wrapper ── */
     .table-wrap {
@@ -201,19 +221,11 @@
 
 <main>
 
-  <div class="stats">
-    <div class="stat-card">
-      <div class="num" id="stat-talks">—</div>
-      <div class="lbl">Talks</div>
-    </div>
-    <div class="stat-card">
-      <div class="num" id="stat-videos">—</div>
-      <div class="lbl">Videos</div>
-    </div>
-    <div class="stat-card">
-      <div class="num" id="stat-slides">—</div>
-      <div class="lbl">Slide Decks</div>
-    </div>
+  <div class="search-wrap">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <input id="search" type="search" placeholder="Search by speaker, topic, date…" autocomplete="off" />
   </div>
 
   <div class="table-wrap">
@@ -229,6 +241,11 @@
       <tbody id="talks-body">
         <!-- Populated by JS below -->
       </tbody>
+      <tfoot>
+        <tr id="no-results-row" style="display:none">
+          <td colspan="4" class="no-results" style="display:table-cell">No talks match your search.</td>
+        </tr>
+      </tfoot>
     </table>
   </div>
 
@@ -298,7 +315,6 @@
 
   /* ── Render ── */
   const tbody = document.getElementById("talks-body");
-  let videoCount = 0, slideCount = 0;
 
   talks.forEach(t => {
     const tr = document.createElement("tr");
@@ -307,9 +323,6 @@
       t.slides ? `<a class="icon-link link-slides" href="${t.slides}" target="_blank" rel="noopener">${slideIcon}<span>Slides</span></a>` : "",
       t.video  ? `<a class="icon-link link-video"  href="${t.video}"  target="_blank" rel="noopener">${videoIcon}<span>Video</span></a>`  : ""
     ].join("");
-
-    if (t.video)  videoCount++;
-    if (t.slides) slideCount++;
 
     tr.innerHTML = `
       <td class="td-date"><span class="date-badge">${fmtDate(t.date)}</span></td>
@@ -320,10 +333,33 @@
     tbody.appendChild(tr);
   });
 
-  /* ── Stats ── */
-  document.getElementById("stat-talks").textContent  = talks.length;
-  document.getElementById("stat-videos").textContent = videoCount;
-  document.getElementById("stat-slides").textContent = slideCount;
+  /* ── Fuzzy search ── */
+  function fuzzyMatch(query, text) {
+    // Returns true if all characters of query appear in order within text
+    query = query.toLowerCase();
+    text  = text.toLowerCase();
+    let qi = 0;
+    for (let i = 0; i < text.length && qi < query.length; i++) {
+      if (text[i] === query[qi]) qi++;
+    }
+    return qi === query.length;
+  }
+
+  document.getElementById("search").addEventListener("input", function () {
+    const q = this.value.trim();
+    const rows = tbody.querySelectorAll("tr");
+    let visible = 0;
+
+    rows.forEach((tr, i) => {
+      const t = talks[i];
+      const haystack = [t.date, t.speaker, t.topic, fmtDate(t.date)].join(" ");
+      const show = !q || fuzzyMatch(q, haystack);
+      tr.style.display = show ? "" : "none";
+      if (show) visible++;
+    });
+
+    document.getElementById("no-results-row").style.display = visible === 0 ? "" : "none";
+  });
 </script>
 
 </body>
