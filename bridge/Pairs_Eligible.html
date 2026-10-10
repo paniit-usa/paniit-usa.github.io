@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PANIIT Bridge — Pairs Eligible Players</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f8fafc;
+      color: #1e293b;
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    header {
+      background: linear-gradient(135deg, #1a3a5c 0%, #0f2540 100%);
+      color: white;
+      padding: 1.75rem 2rem;
+      border-bottom: 4px solid #f97316;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    header .logo img {
+      width: 72px; height: 72px;
+      border-radius: 10px;
+      object-fit: contain;
+      background: white;
+      padding: 4px;
+      display: block;
+      flex-shrink: 0;
+    }
+    header .header-text { flex: 1; }
+    header .org-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #f97316;
+      margin-bottom: 0.3rem;
+    }
+    header .breadcrumb { font-size: 0.82rem; color: #94a3b8; margin-bottom: 0.4rem; }
+    header .breadcrumb a { color: #94a3b8; text-decoration: none; }
+    header .breadcrumb a:hover { color: white; }
+    header h1 { font-size: 1.9rem; font-weight: 700; margin-bottom: 0.3rem; }
+    header p { color: #94a3b8; font-size: 0.95rem; }
+
+    @media (max-width: 480px) {
+      header { gap: 1rem; }
+      header .logo img { width: 52px; height: 52px; }
+      header h1 { font-size: 1.4rem; }
+    }
+
+    /* ── Main ── */
+    main {
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 0 1.5rem 5rem;
+    }
+
+    /* ── Search ── */
+    .search-wrap {
+      margin-bottom: 1.25rem;
+      position: relative;
+    }
+    .search-wrap svg {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 17px; height: 17px;
+      color: #94a3b8;
+      pointer-events: none;
+    }
+    #search {
+      width: 100%;
+      padding: 0.75rem 1rem 0.75rem 2.75rem;
+      font-size: 0.95rem;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 10px;
+      background: white;
+      color: #1e293b;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    #search:focus {
+      border-color: #1a3a5c;
+      box-shadow: 0 0 0 3px rgba(26,58,92,0.1);
+    }
+    #search::placeholder { color: #94a3b8; }
+
+    /* ── Alpha nav ── */
+    .alpha-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-bottom: 2rem;
+      padding: 1rem 1.25rem;
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+    .alpha-nav a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.1rem;
+      height: 2.1rem;
+      border-radius: 7px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: #1a3a5c;
+      background: #f1f5f9;
+      border: 1.5px solid transparent;
+      transition: all 0.15s;
+    }
+    .alpha-nav a:hover {
+      background: #1a3a5c;
+      color: white;
+    }
+    .alpha-nav a.disabled {
+      color: #cbd5e1;
+      background: #f8fafc;
+      cursor: default;
+      pointer-events: none;
+    }
+    .alpha-nav .divider {
+      width: 1px;
+      background: #e2e8f0;
+      margin: 0 0.25rem;
+      align-self: stretch;
+    }
+
+    /* ── Sections ── */
+    .section {
+      margin-bottom: 2rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-letter {
+      width: 2.2rem;
+      height: 2.2rem;
+      background: #1a3a5c;
+      color: white;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .section-count {
+      font-size: 0.78rem;
+      color: #94a3b8;
+      font-weight: 500;
+    }
+
+    /* ── 3-column grid of IDs ── */
+    .id-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.4rem 0.75rem;
+    }
+
+    @media (max-width: 600px) {
+      .id-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .id-item {
+      font-size: 0.88rem;
+      color: #334155;
+      padding: 0.3rem 0.5rem;
+      border-radius: 5px;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      background: white;
+      border: 1px solid #f1f5f9;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .id-item.highlight {
+      background: #fef9c3;
+      border-color: #fde047;
+      color: #1e293b;
+    }
+
+    /* ── No results ── */
+    #no-results {
+      display: none;
+      text-align: center;
+      padding: 3rem;
+      color: #94a3b8;
+      font-style: italic;
+    }
+
+    /* ── Result count ── */
+    #result-count {
+      font-size: 0.82rem;
+      color: #94a3b8;
+      margin-bottom: 1rem;
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      color: #94a3b8;
+      font-size: 0.8rem;
+    }
+    footer a { color: #64748b; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <img src="../assets/public/logo.jpg" alt="PANIIT USA logo" />
+  </div>
+  <div class="header-text">
+    <div class="org-name">PAN IIT USA</div>
+    <div class="breadcrumb"><a href="../">← Home</a> / <a href="./">Bridge</a></div>
+    <h1>Pairs Tournament — Eligible Players</h1>
+    <p>BBO usernames approved to participate in the PANIIT Pairs tournament.</p>
+  </div>
+</header>
+
+<main>
+
+  <div class="search-wrap">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <input id="search" type="search" placeholder="Search BBO username…" autocomplete="off" />
+  </div>
+
+  <nav class="alpha-nav" id="alpha-nav">
+    <!-- populated by JS -->
+  </nav>
+
+  <div id="result-count"></div>
+  <div id="sections"></div>
+  <div id="no-results">No usernames match your search.</div>
+
+</main>
+
+<footer>
+  <p>PAN IIT USA &nbsp;·&nbsp; <a href="https://github.com/paniit-usa" target="_blank">github.com/paniit-usa</a></p>
+</footer>
+
+<script>
+  const ids = [
+    "0nsfvalue","55sax","7dk7","aanya1","aavihood","ababarve","abahulkar",
+    "abhand","abhchat","Abhi_es","acetricks","aditi_58","aego","affank1",
+    "Agg1956","Ajay7","Ajit40","ajitp","Akg49","akjq","akvish19","amal48",
+    "ammane","amol_athaw","ananthn","Anantrege","andy43210","ani55","anibhave",
+    "anilkhatri","ankatti","anshul","anucool","anudeole","anuj007","ar100",
+    "araghava","Arcturus54","arnabmoitr","arti_athaw","arun50","arunjain2",
+    "Arvindj446","arvinds","ashroj","asmiam","asvenkat","atul bhide","atul d",
+    "Avinshah","Axp1011","babaray","bablooo","babua","badla","Balaji","begada",
+    "bhagatram","Bharath","bharatrao","Bhaskarp","bideshk","bigIIT83",
+    "Bimal jain","binmohit","binnyboy","birju","bishounen","biswas1","bk5",
+    "blackbees","Bongiitm83","Breddy1227","bridge_man","Bridgfan4","bridgmad",
+    "brp_p","buddyhaase","bvaidy","calf211","captyogi","Cbdandekar","ccnmnm",
+    "chandb9","chawla11","chelpankaj","Chungath","dablu","daleep","dannysen",
+    "datla12","debuoakh","Deek","deepak953","deevar","dgiitb","Dhakras",
+    "dhrubroy","Diffsoft","dilip g","Dilipv","divesh","Dkkale","docrasta",
+    "dolophanoo","dourden","Dpramanik","Drbehere","drkdr","dslee","epra","esji",
+    "francogons","frog1948","frontline","g3uakm","gansharma","gargsk",
+    "GaryBaker","gaulixind","giridhara","Girish53","goelra","Gooldee","Goutamc",
+    "Gsd_1943","hardvector","harmosha","hemantas","hmj","howrahpul","iamadeus",
+    "ichattoraj","iit_bombay","Ing","inswinger","Ionotropin","Iyervv48",
+    "Jabroo","jaipuriar","jairajh","jaj123","Janubandey","jareja","Jayantp",
+    "jbpvithal","ji45","Jinrong832","jmeet","jogindra","joharben","Joshi1604",
+    "jramesan","jsuppal","Jtegsa","Kalpana g","kameshrao","Kanadj","kanth1953",
+    "Karandikar","Karmarkars","Karthiks03","KB0514","kctiger","kgsree","kista",
+    "kmaillac1","kookee","krr95","kuhchung","kumarwv","Kunal C","kvijay99",
+    "kyachahiye","lavasa","Laxmi108","laxmidhar","limayemv29","lkmita",
+    "Luckyshot","lucky_93","m shah","Maddy2000","madhavi123","madhu","Mak1951",
+    "malimaye","manishaj","max16","maybach57","mb5555","mchandy94","mdebasish6",
+    "mgirkar2","miekosin","milindvart","minus1600","mkavale","mohan356",
+    "mozelle197","mp55","Mpkpo","mriduldas","mrmadhav","muthukumar","naraman999",
+    "neyvis","Ngpind","niche1000","nikhil_ydv","nitinbs2","Nitind9","nitinmore",
+    "nitinshah","nizam1","nj_ca","nmdharma","nohamman","nonuchamp","Notvul",
+    "Nvempaty","N_S","padmakar51","Panja","Pareshg53","Patsiitm83","PaulAbra",
+    "paulkh","pawangoenk","pdjoshi","planwell","playforjoy","prabha06",
+    "pradeepd2","pradver","pvjai","quackerz","raguramans","rajiva","Rajiv_D",
+    "rajsunkara","ramaratnam","ramesh78","ramgaru","ranjit1","ranjit123",
+    "raturias","Ravia54","ravin012","Ravindran","ravisankar","rbhalla","rcm515",
+    "RekhaKh","rgiitm83","rishabh","rj123456","rjp62","rkj_0264","rmki",
+    "rnagpal","RNBRIDGE1","Rp1962","Rpinto5935","rs99","rtadep","RtBridge1",
+    "rudra1","rvg","sabupc","sagarwal45","sah476","SahirL","sahneyp","saintq",
+    "salilkanj","salimaye","sameerk","sanat_saha","saroopm","Satyar","saxenavp",
+    "Saydiv","sbv59","sdkhanzode","shaileshah","shaji","shanxny","sharadhima",
+    "sharw","shazamm","shikasrini","shikchat","shobhituni","shriram98","sjagti1",
+    "Slam123","smsubm","smwele","snaralkar","snayak40","sohamskr","somsus",
+    "soselar","sparkyuday","spatelworc","sportive","sree0360","srsbridge",
+    "srvispute","ssinghal","ssrawat79","Starseer83","sthadani","STS_",
+    "subhash_11","subhasish","subir_m","sudheer","suhas123","Suman","suman1",
+    "Sun7dar","Sunil C","Supercond","sushil_n","SVcool","sviswa","sykulkarni",
+    "Takanes","tanishka","tenor","thegame_85","tima_g","TJ5","tkrc","tpradip",
+    "tsinghal","tugga","tvramani","ujjagr","umeshopf","uresh","vasan123",
+    "vasantson","vasudevk","veerac","venkatvrv1","Venky","vgg_india","vibhakarb",
+    "VICHCHU","vid1","vijay k","Vijaya28","vijayiitk","vijay_b","vikaskeni",
+    "Vilas Mand","vilas1","Vinod76er","vira15","virgosrock","vivekp","vjs51",
+    "Vspat12","VSrini","vtiwari","Yogesh K","Yogeshkar","yogeshu","yogibear_1",
+    "zamorin","zanna9","Zasanya","zeaguru","zebranut","zhenya__S","zia33333","zvt"
+  ];
+
+  // Deduplicate, sort case-insensitively
+  const sorted = [...new Set(ids)].sort((a, b) =>
+    a.toLowerCase().localeCompare(b.toLowerCase())
+  );
+
+  // Group by first character (normalize digits to '#')
+  function groupKey(id) {
+    const c = id[0].toLowerCase();
+    return /[0-9]/.test(c) ? '#' : c;
+  }
+
+  const groups = {};
+  sorted.forEach(id => {
+    const k = groupKey(id);
+    if (!groups[k]) groups[k] = [];
+    groups[k].push(id);
+  });
+
+  // All possible keys in order: # then a-z
+  const allKeys = ['#', ...'abcdefghijklmnopqrstuvwxyz'.split('')];
+  const activeKeys = allKeys.filter(k => groups[k]);
+
+  // Build alpha nav
+  const nav = document.getElementById('alpha-nav');
+  // Numbers first
+  const numLink = document.createElement('a');
+  numLink.href = groups['#'] ? '#section-num' : '#';
+  numLink.textContent = '0–9';
+  numLink.style.width = 'auto';
+  numLink.style.padding = '0 0.6rem';
+  if (!groups['#']) numLink.classList.add('disabled');
+  nav.appendChild(numLink);
+
+  // Divider
+  const div = document.createElement('span');
+  div.className = 'divider';
+  nav.appendChild(div);
+
+  // Letters
+  'abcdefghijklmnopqrstuvwxyz'.split('').forEach(letter => {
+    const a = document.createElement('a');
+    a.textContent = letter.toUpperCase();
+    if (groups[letter]) {
+      a.href = `#section-${letter}`;
+    } else {
+      a.classList.add('disabled');
+    }
+    nav.appendChild(a);
+  });
+
+  // Build sections
+  const sectionsEl = document.getElementById('sections');
+
+  function buildSections(filter) {
+    sectionsEl.innerHTML = '';
+    let totalVisible = 0;
+
+    activeKeys.forEach(key => {
+      const items = groups[key].filter(id =>
+        !filter || id.toLowerCase().includes(filter.toLowerCase())
+      );
+      if (items.length === 0) return;
+      totalVisible += items.length;
+
+      const section = document.createElement('div');
+      section.className = 'section';
+      section.id = key === '#' ? 'section-num' : `section-${key}`;
+
+      const label = key === '#' ? '0–9' : key.toUpperCase();
+      section.innerHTML = `
+        <div class="section-header">
+          <div class="section-letter">${label}</div>
+          <span class="section-count">${items.length} username${items.length !== 1 ? 's' : ''}</span>
+        </div>
+        <div class="id-grid">
+          ${items.map(id => {
+            const display = filter
+              ? id.replace(new RegExp(`(${filter})`, 'gi'), '<mark style="background:#fef08a;border-radius:2px;padding:0 1px">$1</mark>')
+              : id;
+            return `<div class="id-item">${display}</div>`;
+          }).join('')}
+        </div>
+      `;
+      sectionsEl.appendChild(section);
+    });
+
+    document.getElementById('result-count').textContent =
+      filter ? `${totalVisible} of ${sorted.length} usernames match` : `${sorted.length} usernames total`;
+    document.getElementById('no-results').style.display = totalVisible === 0 ? 'block' : 'none';
+  }
+
+  buildSections('');
+
+  document.getElementById('search').addEventListener('input', function () {
+    buildSections(this.value.trim());
+  });
+</script>
+
+</body>
+</html>

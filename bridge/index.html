@@ -42,21 +42,84 @@
     header .breadcrumb a:hover { color: white; }
     header h1 { font-size: 1.9rem; font-weight: 700; margin-bottom: 0.3rem; }
     header p { color: #94a3b8; font-size: 0.95rem; }
+
     main {
-      max-width: 700px;
-      margin: 4rem auto;
-      padding: 0 1.5rem;
-      text-align: center;
+      max-width: 780px;
+      margin: 3rem auto;
+      padding: 0 1.5rem 5rem;
     }
-    .coming-soon {
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #94a3b8;
+      margin-bottom: 1.1rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.1rem;
+    }
+
+    .card {
       background: white;
       border: 1px solid #e2e8f0;
-      border-radius: 16px;
-      padding: 3rem 2rem;
-      box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+      border-radius: 14px;
+      padding: 1.5rem 1.4rem;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+      transition: box-shadow 0.18s, transform 0.18s, border-color 0.18s;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
     }
-    .coming-soon h2 { font-size: 1.5rem; color: #1a3a5c; margin-bottom: 0.75rem; }
-    .coming-soon p { color: #64748b; line-height: 1.6; }
+    .card:hover {
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      transform: translateY(-2px);
+      border-color: #1a3a5c;
+    }
+    .card-icon { font-size: 1.8rem; line-height: 1; margin-bottom: 0.2rem; }
+    .card-title { font-size: 1.05rem; font-weight: 700; color: #0f2540; }
+    .card-desc { font-size: 0.86rem; color: #64748b; line-height: 1.5; }
+    .card-arrow {
+      margin-top: auto;
+      padding-top: 0.65rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #f97316;
+    }
+
+    .badge-live {
+      display: inline-block;
+      background: #dcfce7;
+      color: #16a34a;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 99px;
+      padding: 0.12rem 0.5rem;
+      margin-left: 0.4rem;
+      vertical-align: middle;
+    }
+    .badge-soon {
+      display: inline-block;
+      background: #f1f5f9;
+      color: #94a3b8;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 99px;
+      padding: 0.12rem 0.5rem;
+      margin-left: 0.4rem;
+      vertical-align: middle;
+    }
+
     footer { text-align: center; padding: 1.5rem; color: #94a3b8; font-size: 0.8rem; }
     footer a { color: #64748b; }
   </style>
@@ -71,14 +134,36 @@
     <div class="org-name">PAN IIT USA</div>
     <div class="breadcrumb"><a href="../">← Home</a></div>
     <h1>Bridge</h1>
-    <p>Connecting IIT alumni with opportunities and community.</p>
+    <p>PANIIT Bridge — tournaments, events, and community for IIT alumni bridge players.</p>
   </div>
 </header>
 
 <main>
-  <div class="coming-soon">
-    <h2>Coming Soon</h2>
-    <p>The PANIIT Bridge program page is under construction. Check back soon for updates on mentorship connections, networking events, and community initiatives.</p>
+  <div class="section-label">Tournaments &amp; Resources</div>
+
+  <div class="cards">
+
+    <a class="card" href="Pairs_Eligible.html">
+      <div class="card-icon">🃏</div>
+      <div class="card-title">Pairs Tournament<span class="badge-live">Live</span></div>
+      <div class="card-desc">View the list of BBO usernames eligible to play in the PANIIT Pairs tournament.</div>
+      <div class="card-arrow">View eligible players &rarr;</div>
+    </a>
+
+    <div class="card" style="opacity:0.6;cursor:default;">
+      <div class="card-icon">📅</div>
+      <div class="card-title">Schedule<span class="badge-soon">Soon</span></div>
+      <div class="card-desc">Upcoming tournament dates, registration, and event details.</div>
+      <div class="card-arrow" style="color:#94a3b8;">Coming soon</div>
+    </div>
+
+    <div class="card" style="opacity:0.6;cursor:default;">
+      <div class="card-icon">📊</div>
+      <div class="card-title">Results<span class="badge-soon">Soon</span></div>
+      <div class="card-desc">Past tournament results, standings, and player rankings.</div>
+      <div class="card-arrow" style="color:#94a3b8;">Coming soon</div>
+    </div>
+
   </div>
 </main>
 
