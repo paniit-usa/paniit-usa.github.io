@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Site Managers' Guide — PANIIT Bridge</title>
+  <link rel="stylesheet" href="../site.css" />
+  <style>
+    .content table { margin-bottom: 1rem; }
+    .content td code, .content p code { background: #f1f5f9; padding: 0.05rem 0.35rem; border-radius: 4px; font-size: 0.85em; }
+    .folder { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 0.86rem; line-height: 1.7; white-space: pre; overflow-x: auto; }
+    .warn { background: #fef2f2; border-left-color: #dc2626; color: #7f1d1d; }
+    .toc a { text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<main class="content">
+  <div class="area-label">Onboarding · Site managers</div>
+  <h1>Site Managers' Guide</h1>
+  <p class="lead">How the PANIIT Bridge website gets its content from Google Drive, and what you need to set up so you can update the site yourselves, without needing any web skills.</p>
+
+  <div class="box toc">
+    <strong>Contents</strong>
+    <ol>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#folders">Step 1: Create the folders</a></li>
+      <li><a href="#docs">Step 2: Create the Google Docs</a></li>
+      <li><a href="#publish">Step 3: Publish each Doc to the web</a></li>
+      <li><a href="#calendar">Step 4: Create the Bridge Calendar</a></li>
+      <li><a href="#volunteers">Step 5: Set up the private volunteer folder</a></li>
+      <li><a href="#send">Step 6: Send the links to the site builder</a></li>
+      <li><a href="#editing">Day-to-day editing</a></li>
+      <li><a href="#rules">Golden rules</a></li>
+    </ol>
+  </div>
+
+  <h2 id="how">1. How it works</h2>
+  <p>Most pages on this site show the contents of a <strong>Google Doc</strong> that you own. When you edit the Doc, the website updates by itself, usually <strong>within about 5 minutes</strong>. You never touch the website directly.</p>
+  <ul>
+    <li><strong>Public pages</strong> (Home, Administrative, Player Resources) each show one Google Doc that has been <em>published to the web</em>.</li>
+    <li><strong>Volunteer material</strong> (Onboarding) lives in a <em>separate, private</em> Drive folder. The website only links to it, and Google lets in only the people you have shared it with.</li>
+    <li>The <strong>Bridge Calendar</strong> on the Home page is a Google Calendar you manage.</li>
+  </ul>
+  <p>The setup below is done <strong>once</strong>. After that, the site builder pastes your links into the site one time, and from then on you just edit your Docs.</p>
+
+  <h2 id="folders">2. Step 1: Create the folders</h2>
+  <p>One manager creates the folders below in their Google Drive, then shares the top folder with the other two managers as <strong>Editor</strong> (right-click the folder → <em>Share</em> → add their emails → <em>Editor</em>). Please also share it with the site builder as Editor, so they can help if something breaks.</p>
+  <div class="box folder">📁 PANIIT Bridge Website                  ← public content, shared with the 3 managers
+   📁 1 Home Page
+   📁 2 Administrative
+   📁 3 Player Resources
+
+📁 PANIIT Bridge Volunteers (Private)     ← never published; shared only with volunteers
+</div>
+  <div class="note">Keep the two top folders <strong>separate</strong>. Do not put the private folder inside the public one. That keeps volunteer material from being shared or published by accident.</div>
+
+  <h2 id="docs">3. Step 2: Create the Google Docs</h2>
+  <p>Inside each folder, create a Google Doc (<em>New → Google Docs</em>) with exactly these names. The names are only for you, since the website doesn't read them, but using the same names makes it easy for everyone to find things. You can copy the starter text from the matching page on the current site.</p>
+
+  <table>
+    <thead><tr><th>Folder</th><th>Google Doc name</th><th>Shows on site page</th></tr></thead>
+    <tbody>
+      <tr><td>1 Home Page</td><td>Home – Announcements</td><td><a href="../index.html">Bridge Home</a>, Announcements box</td></tr>
+      <tr><td>1 Home Page</td><td>Home – Newsletter</td><td><a href="../index.html">Bridge Home</a>, Newsletter box</td></tr>
+      <tr><td>1 Home Page</td><td>Home – From the Table</td><td><a href="../index.html">Bridge Home</a>, From the Table box (anecdotes)</td></tr>
+      <tr><td>2 Administrative</td><td>Admin – Sponsors</td><td><a href="../admin/sponsors.html">Sponsors</a></td></tr>
+      <tr><td>2 Administrative</td><td>Admin – Volunteers</td><td><a href="../admin/volunteers.html">Volunteers</a></td></tr>
+      <tr><td>2 Administrative</td><td>Admin – Ethics Committee</td><td><a href="../admin/ethics.html">Ethics Committee</a></td></tr>
+      <tr><td>2 Administrative</td><td>Admin – Rules Committee</td><td><a href="../admin/rules-committee.html">Rules Committee</a></td></tr>
+      <tr><td>2 Administrative</td><td>Admin – Appeals Committee</td><td><a href="../admin/appeals-committee.html">Appeals Committee</a></td></tr>
+      <tr><td>3 Player Resources</td><td>Players – Club Rules</td><td><a href="../players/club-rules.html">Club Rules</a></td></tr>
+      <tr><td>3 Player Resources</td><td>Players – Schedule &amp; Results</td><td><a href="../players/schedule-results.html">Schedule &amp; Results</a></td></tr>
+      <tr><td>3 Player Resources</td><td>Players – Technical Resources</td><td><a href="../players/technical.html">Technical Resources</a></td></tr>
+      <tr><td>3 Player Resources</td><td>Players – Point Leaders</td><td><a href="../players/point-leaders.html">Point Leaders</a></td></tr>
+      <tr><td>3 Player Resources</td><td>Players – Appeals Process</td><td><a href="../players/appeals-process.html">Appeals Process</a></td></tr>
+    </tbody>
+  </table>
+  <p>That is <strong>13 Docs</strong> in total. A few pages do <em>not</em> need a Doc:</p>
+  <ul>
+    <li><strong>Report Site Issues</strong> is a fixed page.</li>
+    <li><strong>Eligible Players List</strong> is maintained by the site builder for now. Send changes to them.</li>
+  </ul>
+  <p><strong>Writing tips:</strong> The site already shows the page title, so start the Doc with your first paragraph or a heading, not the title again. Use Google Docs' built-in <em>Heading</em> styles, bullet lists and links; they all carry over. Keep the Home page Docs short, because they appear in small boxes.</p>
+
+  <h2 id="publish">4. Step 3: Publish each Doc to the web</h2>
+  <p>Do this once for each of the 13 Docs:</p>
+  <ol>
+    <li>Open the Doc.</li>
+    <li>Click <em>File → Share → Publish to web</em>.</li>
+    <li>Leave the <strong>Link</strong> tab selected and click <strong>Publish</strong>, then <strong>OK</strong>.</li>
+    <li>Open <em>Published content &amp; settings</em> (at the bottom of that window) and make sure <strong>"Automatically republish when changes are made"</strong> is ticked.</li>
+    <li>Copy the link shown (it ends in <code>/pub</code>) and paste it into your list for Step 6.</li>
+  </ol>
+  <div class="note">"Publish to web" makes the Doc readable by <strong>anyone</strong> with the link, the same as the website. It does <em>not</em> let anyone edit it. Only publish Docs from the <strong>PANIIT Bridge Website</strong> folder.</div>
+  <p>If <em>Publish to web</em> is greyed out, you are probably using a work or university Google account whose administrator has turned it off. Please use a personal Gmail account instead.</p>
+
+  <h2 id="calendar">5. Step 4: Create the Bridge Calendar</h2>
+  <ol>
+    <li>Go to <a href="https://calendar.google.com" target="_blank" rel="noopener">Google Calendar</a>. In the left panel, next to <em>Other calendars</em>, click <strong>+</strong> → <em>Create new calendar</em>.</li>
+    <li>Name it <strong>PANIIT Bridge Calendar</strong> and click <em>Create calendar</em>.</li>
+    <li>In that calendar's settings, under <em>Share with specific people</em>, add the other two managers with <strong>"Make changes to events"</strong>.</li>
+    <li>Under <em>Access permissions for events</em>, tick <strong>"Make available to public"</strong>.</li>
+    <li>Under <em>Integrate calendar</em>, find <strong>Embed code</strong>. Copy only the web address inside <code>src="…"</code> (it starts with <code>https://calendar.google.com/calendar/embed?src=</code>) for Step 6.</li>
+  </ol>
+  <p>Add PANIIT tournaments and any other bridge events you'd like players to know about. Events appear on the Home page automatically.</p>
+
+  <h2 id="volunteers">6. Step 5: Set up the private volunteer folder</h2>
+  <p>In <strong>PANIIT Bridge Volunteers (Private)</strong>, create these Docs (or upload existing files):</p>
+  <table>
+    <thead><tr><th>Google Doc name</th><th>What goes in it</th></tr></thead>
+    <tbody>
+      <tr><td>TD Resources</td><td>Guides, checklists and references for tournament directors</td></tr>
+      <tr><td>Conflict Resolution Process</td><td>Step-by-step process for handling disputes between players</td></tr>
+    </tbody>
+  </table>
+  <p>Then set who can see it:</p>
+  <ol>
+    <li>Right-click the folder → <em>Share</em>.</li>
+    <li>Under <em>General access</em>, make sure it says <strong>Restricted</strong>.</li>
+    <li>Add each volunteer's email as <strong>Viewer</strong> (or <em>Editor</em> for people who help maintain the material).</li>
+    <li>Click <em>Copy link</em> and keep it for Step 6.</li>
+  </ol>
+  <div class="note warn"><strong>Never</strong> use "Publish to web" or "Anyone with the link" on anything in this folder. To give a new volunteer access, add their email to the folder; to remove someone, remove their email. The website link never needs to change.</div>
+
+  <h2 id="send">7. Step 6: Send the links to the site builder</h2>
+  <p>Email the site builder one message listing the links, for example:</p>
+  <div class="box folder">Home – Announcements:          https://docs.google.com/document/d/e/…/pub
+Home – Newsletter:             https://docs.google.com/document/d/e/…/pub
+… (one line for each of the 13 Docs)
+Bridge Calendar embed:         https://calendar.google.com/calendar/embed?src=…
+Volunteers (Private) folder:   https://drive.google.com/drive/folders/…</div>
+  <p>The site builder adds them to the website once. You can send links in batches; any page without a link keeps showing its current text until its link arrives.</p>
+
+  <h2 id="editing">8. Day-to-day editing</h2>
+  <ul>
+    <li><strong>To change a page:</strong> open its Doc in the <em>PANIIT Bridge Website</em> folder and edit. The site updates within about 5 minutes. Refresh the page to check.</li>
+    <li><strong>To add an event:</strong> add it to the <em>PANIIT Bridge Calendar</em>.</li>
+    <li><strong>Newsletter and anecdotes:</strong> when community members send in items, paste the ones you choose into <em>Home – Newsletter</em> or <em>Home – From the Table</em>. Remove older items to keep the boxes short.</li>
+    <li><strong>Two managers editing at once</strong> is fine. Google Docs handles it, and <em>File → Version history</em> lets you undo mistakes.</li>
+    <li><strong>Need a new page or a menu change?</strong> Ask the site builder; that is the only thing that needs them.</li>
+  </ul>
+
+  <h2 id="rules">9. Golden rules</h2>
+  <ol>
+    <li><strong>Edit Docs; never delete and recreate them.</strong> A new Doc has a new link, and the website would keep showing the old one. If a page needs a complete rewrite, clear the text in the existing Doc.</li>
+    <li><strong>Renaming or moving a Doc within the folder is fine.</strong> The link does not change.</li>
+    <li><strong>Don't click "Stop publishing"</strong> unless you want that page to go blank on the website.</li>
+    <li><strong>Everything in the Website folder is public.</strong> Don't include personal phone numbers or emails without the person's permission.</li>
+    <li><strong>Nothing in the Volunteers (Private) folder is ever published.</strong></li>
+    <li><strong>Keep at least two managers as Editors</strong> on both folders, so nothing is lost if someone steps away. If the folder owner steps down, they should transfer ownership to another manager (<em>Share → ⋮ next to the person → Transfer ownership</em>).</li>
+  </ol>
+</main>
+
+<script src="../site.js"></script>
+</body>
+</html>
