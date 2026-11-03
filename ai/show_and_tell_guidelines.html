@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PANIIT USA — Show &amp; Tell Guidelines</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f8fafc;
+      color: #1e293b;
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    header {
+      background: linear-gradient(135deg, #1a3a5c 0%, #0f2540 100%);
+      color: white;
+      padding: 1.75rem 2rem;
+      border-bottom: 4px solid #f97316;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    header .logo img {
+      width: 72px; height: 72px;
+      border-radius: 10px;
+      object-fit: contain;
+      background: white;
+      padding: 4px;
+      display: block;
+      flex-shrink: 0;
+    }
+    header .header-text { flex: 1; }
+    header .org-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #f97316;
+      margin-bottom: 0.3rem;
+    }
+    header .breadcrumb { font-size: 0.82rem; color: #94a3b8; margin-bottom: 0.4rem; }
+    header .breadcrumb a { color: #94a3b8; text-decoration: none; }
+    header .breadcrumb a:hover { color: white; }
+    header h1 { font-size: 1.9rem; font-weight: 700; margin-bottom: 0.3rem; }
+    header p { color: #94a3b8; font-size: 0.95rem; max-width: 560px; }
+
+    @media (max-width: 480px) {
+      header { gap: 1rem; }
+      header .logo img { width: 52px; height: 52px; }
+      header h1 { font-size: 1.4rem; }
+    }
+
+    /* ── Main ── */
+    main {
+      max-width: 760px;
+      margin: 2.5rem auto;
+      padding: 0 1.5rem 5rem;
+    }
+
+    /* ── Sections ── */
+    .section + .section { margin-top: 2.5rem; }
+
+    .section h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #0f2540;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-intro {
+      font-size: 0.92rem;
+      color: #475569;
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-left: 4px solid #1a3a5c;
+      border-radius: 14px;
+      padding: 1.4rem 1.5rem;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+    }
+
+    .card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .card li {
+      position: relative;
+      padding-left: 1.4rem;
+      font-size: 0.92rem;
+      color: #475569;
+      line-height: 1.6;
+    }
+
+    .card li::before {
+      content: "";
+      position: absolute;
+      left: 0.2rem;
+      top: 0.55rem;
+      width: 0.45rem;
+      height: 0.45rem;
+      border-radius: 50%;
+      background: #f97316;
+    }
+
+    .card li strong { color: #1e293b; }
+
+    /* ── Suggested outline table ── */
+    .outline {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.25rem;
+      font-size: 0.88rem;
+    }
+    .outline caption {
+      text-align: left;
+      font-weight: 700;
+      color: #0f2540;
+      margin-bottom: 0.5rem;
+    }
+    .outline th, .outline td {
+      text-align: left;
+      padding: 0.5rem 0.6rem;
+      border-bottom: 1px solid #e2e8f0;
+      vertical-align: top;
+    }
+    .outline th { color: #0f2540; background: #f0f4f8; font-weight: 600; }
+    .outline td { color: #475569; }
+    .outline td:first-child { white-space: nowrap; color: #1e293b; font-weight: 600; }
+    .outline-note { margin-top: 0.75rem; font-size: 0.85rem; color: #64748b; font-style: italic; }
+
+    .credit { margin-top: 2.5rem; text-align: right; font-size: 0.85rem; color: #64748b; font-style: italic; }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      color: #94a3b8;
+      font-size: 0.8rem;
+    }
+    footer a { color: #64748b; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <img src="../assets/public/logo.jpg" alt="PANIIT USA logo" />
+  </div>
+  <div class="header-text">
+    <div class="org-name">PANIIT USA</div>
+    <div class="breadcrumb"><a href="../">← Home</a> / <a href="./">AI</a></div>
+    <h1>Show &amp; Tell Guidelines</h1>
+    <p>Suggestions for preparing a short talk and demo for a PANIIT Tech Show &amp; Tell panel session.</p>
+  </div>
+</header>
+
+<main>
+
+  <div class="section">
+    <h2>Preparing your talk</h2>
+    <p class="section-intro">These suggestions come from what has worked well in past sessions. They help every speaker get a fair share of time and keep the session lively.</p>
+
+    <div class="card">
+      <ul>
+        <li><strong>Please keep your talk to 15 minutes at most.</strong> This is a firm limit: it is the only way we can fit three talks into one hour. The timekeeper will give you a signal when 5 minutes remain and again when 1 minute remains.</li>
+        <li><strong>Keep it to around 5 slides,</strong> with a large font (24 pt or larger) so they are easy to read on screen.</li>
+        <li><strong>Skip the "about me" slide.</strong> The moderator will introduce each speaker, so you can dive straight into your topic.</li>
+        <li><strong>Introduce the topic in simple terms</strong> within the first couple of minutes, so everyone in the audience can follow along.</li>
+        <li><strong>Start with an overview, then show the demo.</strong> A little context makes the demo much easier to appreciate.</li>
+        <li><strong>Aim to keep the demo to 6 minutes or less.</strong> If you are using Colab, it helps to run the cells before the session starts.</li>
+        <li><strong>Have a recorded backup of your demo,</strong> just in case something goes wrong with the live version.</li>
+        <li><strong>Keep the focus educational</strong> rather than promoting a product or company.</li>
+        <li><strong>Close with one key message</strong> you would like the audience to remember.</li>
+        <li><strong>Share your code from your own GitHub repository</strong> if you like; we are happy to add a link to it.</li>
+        <li><strong>Keep API keys and private data off the screen.</strong> All sessions are recorded for our YouTube channel.</li>
+        <li><strong>Send us your slides (as a PDF) about 2 days before the session,</strong> so we can have everything ready.</li>
+      </ul>
+
+      <table class="outline">
+        <caption>One way to structure 15 minutes</caption>
+        <thead>
+          <tr><th>Time (min)</th><th>Section</th><th>What to cover</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>0–1</td><td>Opening</td><td>Your topic, and the one idea you want people to leave with</td></tr>
+          <tr><td>1–3</td><td>Why it matters</td><td>The problem or question, and who it affects</td></tr>
+          <tr><td>3–7</td><td>Your approach</td><td>What you built, tried, or learned: the key idea, not every detail</td></tr>
+          <tr><td>7–12</td><td>Make it concrete</td><td>A demo, results, a before-and-after, a case study, or a worked example</td></tr>
+          <tr><td>12–14</td><td>Takeaway</td><td>Your key message, lessons learned, and where to find more</td></tr>
+          <tr><td>14–15</td><td>Buffer</td><td>Breathing room for transitions or anything that runs long</td></tr>
+        </tbody>
+      </table>
+      <p class="outline-note">Treat this as a starting point and adjust the timings to fit your talk.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Q&amp;A after each talk</h2>
+    <p class="section-intro">Each talk has its own short Q&amp;A, so questions stay specific and the talk is still fresh in everyone's mind.</p>
+
+    <div class="card">
+      <ul>
+        <li><strong>Each Q&amp;A runs for about 3 minutes.</strong> At the 3-minute mark the moderator wraps up, so the next talk can start on time.</li>
+        <li><strong>Attendees post their questions in the chat</strong> during the talk.</li>
+        <li><strong>The moderator picks 2–3 questions</strong> from the chat for each Q&amp;A.</li>
+        <li><strong>The moderator also prepares one question for each speaker,</strong> in case the chat is quiet.</li>
+        <li><strong>The moderator introduces the next speaker</strong> during the last 30 seconds of each Q&amp;A.</li>
+        <li><strong>Any unanswered questions are sent to the speakers</strong> after the session, so they can follow up if they wish.</li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="credit">Guidelines by Avinash Manda (2026-11-02)</p>
+
+</main>
+
+<footer>
+  <p>PANIIT USA &nbsp;·&nbsp; <a href="https://github.com/paniit-usa" target="_blank">github.com/paniit-usa</a> &nbsp;·&nbsp; <a href="https://forms.gle/j3uUTKoK18PpJo7D7" target="_blank" style="opacity: 0.6;">feedback</a></p>
+</footer>
+
+</body>
+</html>
