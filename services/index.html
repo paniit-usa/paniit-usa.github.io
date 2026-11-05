@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PANIIT USA — Services</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f8fafc;
+      color: #1e293b;
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    header {
+      background: linear-gradient(135deg, #1a3a5c 0%, #0f2540 100%);
+      color: white;
+      padding: 1.75rem 2rem;
+      border-bottom: 4px solid #f97316;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    header .logo img {
+      width: 72px; height: 72px;
+      border-radius: 10px;
+      object-fit: contain;
+      background: white;
+      padding: 4px;
+      display: block;
+      flex-shrink: 0;
+    }
+    header .header-text { flex: 1; }
+    header .org-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #f97316;
+      margin-bottom: 0.3rem;
+    }
+    header .breadcrumb { font-size: 0.82rem; color: #94a3b8; margin-bottom: 0.4rem; }
+    header .breadcrumb a { color: #94a3b8; text-decoration: none; }
+    header .breadcrumb a:hover { color: white; }
+    header h1 { font-size: 1.9rem; font-weight: 700; margin-bottom: 0.3rem; }
+    header p { color: #94a3b8; font-size: 0.95rem; max-width: 560px; }
+
+    @media (max-width: 480px) {
+      header { gap: 1rem; }
+      header .logo img { width: 52px; height: 52px; }
+      header h1 { font-size: 1.4rem; }
+    }
+
+    /* ── Main ── */
+    main {
+      max-width: 900px;
+      margin: 2.5rem auto;
+      padding: 0 1.5rem 5rem;
+    }
+
+    .main-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.25rem;
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 2.5rem;
+      font-size: 0.9rem;
+      color: #9a3412;
+      line-height: 1.5;
+    }
+    .main-link a {
+      font-weight: 600;
+      color: #f97316;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .main-link a:hover { text-decoration: underline; }
+
+    /* ── Sections ── */
+    .section + .section { margin-top: 2.75rem; }
+
+    .section h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #0f2540;
+    }
+    .tagline {
+      font-size: 0.92rem;
+      color: #f97316;
+      font-weight: 600;
+      margin: 0.2rem 0 1.25rem;
+    }
+
+    /* ── Item cards ── */
+    .items {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+    @media (max-width: 600px) {
+      .items { grid-template-columns: 1fr; }
+    }
+
+    .item {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-left: 4px solid #1a3a5c;
+      border-radius: 14px;
+      padding: 1.25rem 1.4rem;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    a.item { transition: box-shadow 0.18s, transform 0.18s; }
+    a.item:hover {
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      transform: translateY(-2px);
+    }
+
+    .item-title { font-size: 1.05rem; font-weight: 700; color: #0f2540; }
+    .item-desc { font-size: 0.9rem; color: #475569; line-height: 1.55; }
+
+    .item ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .item li {
+      position: relative;
+      padding-left: 1.2rem;
+      font-size: 0.88rem;
+      color: #475569;
+      line-height: 1.55;
+    }
+    .item li::before {
+      content: "";
+      position: absolute;
+      left: 0.15rem;
+      top: 0.5rem;
+      width: 0.4rem;
+      height: 0.4rem;
+      border-radius: 50%;
+      background: #f97316;
+    }
+    .item li strong { color: #1e293b; }
+
+    .item-arrow {
+      margin-top: auto;
+      padding-top: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #f97316;
+    }
+
+    /* Smaller items with no details */
+    .chips { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.25rem; }
+    .chip {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 99px;
+      padding: 0.45rem 1rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #1a3a5c;
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      color: #94a3b8;
+      font-size: 0.8rem;
+    }
+    footer a { color: #64748b; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <img src="../assets/public/logo.jpg" alt="PANIIT USA logo" />
+  </div>
+  <div class="header-text">
+    <div class="org-name">PANIIT USA</div>
+    <div class="breadcrumb"><a href="../">← Home</a></div>
+    <h1>Services</h1>
+    <p>Uplift, Clubs, and Forums for IIT alumni and their families. Started in 2019 by Amit Arora and Amitabh Raturi.</p>
+  </div>
+</header>
+
+<main>
+
+  <div class="main-link">
+    <span>The official PanIIT USA Services page has the latest on every club and program.</span>
+    <a href="https://www.iit.org/services" target="_blank">Visit iit.org &rarr;</a>
+  </div>
+
+  <div class="section">
+    <h2>🌱 Uplift</h2>
+    <p class="tagline">Empowering IITians and Families</p>
+
+    <div class="items">
+      <a class="item" href="../mentorships/">
+        <div class="item-title">Mentorship</div>
+        <ul>
+          <li><strong>Goals:</strong> career advancement, lifelong learning, and network strength.</li>
+          <li><strong>Format:</strong> online group mentoring, with individual support as needed.</li>
+          <li><strong>Multiple tracks:</strong> Leadership, Entrepreneurship, Academia, and more.</li>
+          <li>Structured matching and engagement check-ins.</li>
+        </ul>
+        <div class="item-arrow">View mentorships &rarr;</div>
+      </a>
+
+      <a class="item" href="../scholarships/">
+        <div class="item-title">Scholarship</div>
+        <ul>
+          <li><strong>Graduate</strong> and <strong>High School</strong> scholarships.</li>
+          <li>Awarded on merit, financial need, and personal background.</li>
+          <li><strong>Goals:</strong> education, inclusivity, and alumni legacy.</li>
+        </ul>
+        <div class="item-arrow">View scholarships &rarr;</div>
+      </a>
+    </div>
+
+    <div class="chips">
+      <span class="chip">Career Guidance</span>
+      <span class="chip">HS Counselling</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>🎲 Clubs</h2>
+    <p class="tagline">Shared Interests. Lasting Friendships.</p>
+
+    <div class="items">
+      <a class="item" href="../bridge/">
+        <div class="item-title">Bridge Club</div>
+        <div class="item-desc">A community for bridge, and our #1 club. No gambling whatsoever.</div>
+        <ul>
+          <li><strong>Activities:</strong> tournaments, workshops, and social events.</li>
+          <li><strong>Goals:</strong> skill-building and competition.</li>
+          <li>International players, including a world #1.</li>
+        </ul>
+        <div class="item-arrow">Visit the Bridge Club &rarr;</div>
+      </a>
+
+      <div class="item">
+        <div class="item-title">Book Club</div>
+        <div class="item-desc">Promotes discussion and engagement.</div>
+        <ul>
+          <li><strong>Explores:</strong> fiction, nonfiction, biography, and tech.</li>
+          <li><strong>Activities:</strong> webinars, WhatsApp discussions, and talks by IIT authors.</li>
+          <li>Both external and internal events.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="chips">
+      <span class="chip">Hobby Club</span>
+      <span class="chip">Games Club</span>
+      <span class="chip">Movie &amp; Music Club</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>💡 Forums</h2>
+    <p class="tagline">Explore Ideas. Exchange Insights. Expand Horizons.</p>
+
+    <div class="items">
+      <a class="item" href="../ai/">
+        <div class="item-title">AI</div>
+        <div class="item-desc">Talks and webinars by IIT alumni on AI, quantum computing, and emerging technology.</div>
+        <div class="item-arrow">View talks &rarr;</div>
+      </a>
+    </div>
+
+    <div class="chips">
+      <span class="chip">Finance</span>
+      <span class="chip">Tokens</span>
+      <span class="chip">Quantum Computing</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>🏛️ Governance</h2>
+    <p class="tagline">Servant Leadership</p>
+
+    <div class="items">
+      <div class="item">
+        <div class="item-title">Clubs, Forums &amp; Uplift</div>
+        <ul>
+          <li>Each club, forum, and Uplift program has a <strong>Lead</strong> and <strong>Co-Lead</strong>.</li>
+          <li>The <strong>Chair</strong> and <strong>Co-Chair</strong> serve as advisors.</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <div class="item-title">Steering Committee</div>
+        <ul>
+          <li>Provides strategic direction and oversight.</li>
+          <li>Reports to the PANIIT USA President.</li>
+          <li>Made up of a Chair, Co-Chair, and Advisor.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <p>PANIIT USA &nbsp;·&nbsp; <a href="https://github.com/paniit-usa" target="_blank">github.com/paniit-usa</a></p>
+</footer>
+
+</body>
+</html>

@@ -81,6 +81,7 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 1.25rem;
     }
+    .card-wide { grid-column: 1 / -1; }
     @media (max-width: 600px) {
       .cards { grid-template-columns: 1fr; }
     }
@@ -198,6 +199,13 @@
   <div class="section-label">Programs &amp; Initiatives</div>
 
   <div class="cards">
+
+    <a class="card card-wide" href="services/">
+      <div class="card-icon">🛎️</div>
+      <div class="card-title">Services<span class="badge-live">Live</span></div>
+      <div class="card-desc">Uplift, Clubs, and Forums for IIT alumni and their families: mentorship, scholarships, bridge, book club, AI talks, and more.</div>
+      <div class="card-arrow">Explore services &rarr;</div>
+    </a>
 
     <a class="card" href="ai/">
       <div class="card-icon">🤖</div>
