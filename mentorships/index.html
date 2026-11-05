@@ -103,6 +103,29 @@
       color: #f97316;
     }
 
+    .main-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.25rem;
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 2rem;
+      font-size: 0.9rem;
+      color: #9a3412;
+      line-height: 1.5;
+    }
+    .main-link a {
+      font-weight: 600;
+      color: #f97316;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .main-link a:hover { text-decoration: underline; }
+
     footer { text-align: center; padding: 1.5rem; color: #94a3b8; font-size: 0.8rem; }
     footer a { color: #64748b; }
   </style>
@@ -122,6 +145,11 @@
 </header>
 
 <main>
+  <div class="main-link">
+    <span>The official PanIIT USA Mentoring Program page lists all mentors and has the registration form.</span>
+    <a href="https://www.iit.org/page/mentorship-webpage" target="_blank">Visit iit.org &rarr;</a>
+  </div>
+
   <div class="section-label">Mentorship Programs</div>
 
   <div class="cards">
