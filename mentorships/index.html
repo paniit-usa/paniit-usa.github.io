@@ -28,6 +28,7 @@
       background: white;
       padding: 4px;
       display: block;
+      flex-shrink: 0;
     }
     header .org-name {
       font-size: 0.85rem;
@@ -42,21 +43,66 @@
     header .breadcrumb a:hover { color: white; }
     header h1 { font-size: 1.9rem; font-weight: 700; margin-bottom: 0.3rem; }
     header p { color: #94a3b8; font-size: 0.95rem; }
-    main {
-      max-width: 700px;
-      margin: 4rem auto;
-      padding: 0 1.5rem;
-      text-align: center;
+
+    @media (max-width: 480px) {
+      header { gap: 1rem; }
+      header .logo img { width: 52px; height: 52px; }
+      header h1 { font-size: 1.4rem; }
     }
-    .coming-soon {
+
+    /* ── Main ── */
+    main {
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 0 1.5rem 5rem;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #94a3b8;
+      margin-bottom: 1.25rem;
+    }
+
+    /* ── Cards grid ── */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .card {
       background: white;
       border: 1px solid #e2e8f0;
       border-radius: 16px;
-      padding: 3rem 2rem;
-      box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+      padding: 1.75rem 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+      transition: box-shadow 0.18s, transform 0.18s, border-color 0.18s;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
     }
-    .coming-soon h2 { font-size: 1.5rem; color: #1a3a5c; margin-bottom: 0.75rem; }
-    .coming-soon p { color: #64748b; line-height: 1.6; }
+    .card:hover {
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      transform: translateY(-2px);
+      border-color: #1a3a5c;
+    }
+
+    .card-icon { font-size: 2rem; line-height: 1; margin-bottom: 0.25rem; }
+    .card-title { font-size: 1.15rem; font-weight: 700; color: #0f2540; }
+    .card-desc { font-size: 0.88rem; color: #64748b; line-height: 1.5; }
+    .card-arrow {
+      margin-top: auto;
+      padding-top: 0.75rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #f97316;
+    }
+
     footer { text-align: center; padding: 1.5rem; color: #94a3b8; font-size: 0.8rem; }
     footer a { color: #64748b; }
   </style>
@@ -76,9 +122,17 @@
 </header>
 
 <main>
-  <div class="coming-soon">
-    <h2>Coming Soon</h2>
-    <p>The PANIIT Mentorships page is under construction. Check back soon for information on our mentorship programs, how to apply, and how experienced alumni can get involved as mentors.</p>
+  <div class="section-label">Mentorship Programs</div>
+
+  <div class="cards">
+
+    <a class="card" href="academic.html">
+      <div class="card-icon">🎓</div>
+      <div class="card-title">Academic Mentorships</div>
+      <div class="card-desc">Mentoring for alumni pursuing a career in academia, from students to future deans and presidents.</div>
+      <div class="card-arrow">Learn more &rarr;</div>
+    </a>
+
   </div>
 </main>
 

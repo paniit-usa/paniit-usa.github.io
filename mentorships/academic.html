@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PANIIT USA — Academic Mentorships</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f8fafc;
+      color: #1e293b;
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    header {
+      background: linear-gradient(135deg, #1a3a5c 0%, #0f2540 100%);
+      color: white;
+      padding: 1.75rem 2rem;
+      border-bottom: 4px solid #f97316;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    header .logo img {
+      width: 72px; height: 72px;
+      border-radius: 10px;
+      object-fit: contain;
+      background: white;
+      padding: 4px;
+      display: block;
+      flex-shrink: 0;
+    }
+    header .header-text { flex: 1; }
+    header .org-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #f97316;
+      margin-bottom: 0.3rem;
+    }
+    header .breadcrumb { font-size: 0.82rem; color: #94a3b8; margin-bottom: 0.4rem; }
+    header .breadcrumb a { color: #94a3b8; text-decoration: none; }
+    header .breadcrumb a:hover { color: white; }
+    header h1 { font-size: 1.9rem; font-weight: 700; margin-bottom: 0.3rem; }
+    header p { color: #94a3b8; font-size: 0.95rem; max-width: 560px; }
+
+    @media (max-width: 480px) {
+      header { gap: 1rem; }
+      header .logo img { width: 52px; height: 52px; }
+      header h1 { font-size: 1.4rem; }
+    }
+
+    /* ── Main ── */
+    main {
+      max-width: 760px;
+      margin: 2.5rem auto;
+      padding: 0 1.5rem 5rem;
+    }
+
+    /* ── Sections ── */
+    .section + .section { margin-top: 2.5rem; }
+
+    .section h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #0f2540;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-intro {
+      font-size: 0.92rem;
+      color: #475569;
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-left: 4px solid #1a3a5c;
+      border-radius: 14px;
+      padding: 1.4rem 1.5rem;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+    }
+
+    .card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .card li {
+      position: relative;
+      padding-left: 1.4rem;
+      font-size: 0.92rem;
+      color: #475569;
+      line-height: 1.6;
+    }
+
+    .card ul li::before {
+      content: "";
+      position: absolute;
+      left: 0.2rem;
+      top: 0.55rem;
+      width: 0.45rem;
+      height: 0.45rem;
+      border-radius: 50%;
+      background: #f97316;
+    }
+
+    .card li strong { color: #1e293b; }
+
+    /* ── Numbered session lists ── */
+    .card ol {
+      list-style: none;
+      counter-reset: session;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+    .card ol li { counter-increment: session; padding-left: 2.2rem; }
+    .card ol li::before {
+      content: counter(session);
+      position: absolute;
+      left: 0;
+      top: 0.05rem;
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 50%;
+      background: #1a3a5c;
+      color: white;
+      font-size: 0.78rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── Two cohorts side by side ── */
+    .cohorts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+    }
+    .cohorts h3 { font-size: 1rem; color: #0f2540; margin-bottom: 0.4rem; }
+    .cohorts p { font-size: 0.92rem; color: #475569; line-height: 1.6; }
+
+    .note {
+      margin-top: 1.25rem;
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: 10px;
+      padding: 0.85rem 1rem;
+      font-size: 0.9rem;
+      color: #9a3412;
+      line-height: 1.6;
+    }
+
+    .when {
+      display: inline-block;
+      background: #f0f4f8;
+      color: #1a3a5c;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border-radius: 99px;
+      padding: 0.2rem 0.7rem;
+      margin-bottom: 1rem;
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      color: #94a3b8;
+      font-size: 0.8rem;
+    }
+    footer a { color: #64748b; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <img src="../assets/public/logo.jpg" alt="PANIIT USA logo" />
+  </div>
+  <div class="header-text">
+    <div class="org-name">PANIIT USA</div>
+    <div class="breadcrumb"><a href="../">← Home</a> / <a href="./">Mentorships</a></div>
+    <h1>Academic Mentorships</h1>
+    <p>Mentoring for academics of IIT origin (or not).</p>
+  </div>
+</header>
+
+<main>
+
+  <div class="section">
+    <h2>The Success in Academia Mentoring Program</h2>
+    <p class="section-intro">This program is intended for alumni who wish to pursue a career in academia and want to learn to succeed at all levels:</p>
+
+    <div class="card">
+      <ul>
+        <li><strong>Students</strong> at the undergrad, graduate, and postdoctoral levels</li>
+        <li><strong>Assistant professors</strong> who are aiming to achieve tenure</li>
+        <li><strong>Tenured faculty</strong> who want to be full Professor, Dept Chair, Dean, Provost, or President</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Two cohorts: join one or both</h2>
+    <p class="section-intro">Welcome to our mentoring sessions, where 5–10 mentees and mentors will share how they learned the ropes and climbed the ladder, or plan to. Mentees are invited to both groups.</p>
+
+    <div class="cohorts">
+      <div class="card">
+        <h3>Junior Group</h3>
+        <p>Students and untenured faculty.</p>
+      </div>
+      <div class="card">
+        <h3>Senior Group</h3>
+        <p>All faculty and administrators.</p>
+      </div>
+    </div>
+
+    <p class="note"><strong>Fewer slides, more stories!</strong> Sharing and listening to these stories could be invaluable to you for a successful career in academia.</p>
+  </div>
+
+  <div class="section">
+    <h2>Planned Sessions for the Junior Group</h2>
+    <p class="section-intro">There will be 7 sessions, one per week. During these, you will:</p>
+
+    <div class="card">
+      <ol>
+        <li>Introduce yourself, and share career aspirations.</li>
+        <li>Describe your short term as well as long term goals.</li>
+        <li>Describe or ask about the culture in your academic field.</li>
+        <li>Discuss cultivating connections and learning the path.</li>
+        <li>Consider adapting to realities and how to change.</li>
+        <li>Speed bumps you might encounter and how to manage them.</li>
+        <li>Thinking long term and achieving final goals.</li>
+      </ol>
+      <p class="note">Needless to add, the focus here is not on content specific to your academic field, but rather on the intangibles that are critical for success.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Planned Sessions for the Senior Group</h2>
+    <p class="section-intro">There will be 7 sessions, one per week. During these we will discuss, with examples:</p>
+
+    <div class="card">
+      <div class="when">Mid-March to early May</div>
+      <ol>
+        <li>The leap from academics to academic leadership: why and when.</li>
+        <li>A change in values or valued change: discover your own values.</li>
+        <li>Interviewing for academic leadership.</li>
+        <li>Discuss cultivating connections and learning the path.</li>
+        <li>Consider adapting to realities and how to change.</li>
+        <li>The ladder from Prof to Chair to Dean to Executive.</li>
+        <li>Leadership in Academia: distinctive features.</li>
+      </ol>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <p>PANIIT USA &nbsp;·&nbsp; <a href="https://github.com/paniit-usa" target="_blank">github.com/paniit-usa</a></p>
+</footer>
+
+</body>
+</html>
