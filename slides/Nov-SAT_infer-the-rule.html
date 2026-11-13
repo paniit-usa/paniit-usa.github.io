@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ARC-style puzzle demo: infer the rule</title>
+<style>
+  :root{--blue:#1e3a8a;--accent:#e4572e;--grey:#4b5563;--bg:#f8fafc;--line:#cbd5e1;}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:#111}
+  header{background:var(--blue);color:#fff;padding:14px 22px}
+  header h1{margin:0;font-size:1.35rem}
+  header p{margin:4px 0 0;opacity:.85;font-size:.92rem}
+  main{max-width:1100px;margin:0 auto;padding:18px 22px 60px}
+  .tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+  .tabs button{border:1px solid var(--line);background:#fff;padding:8px 14px;border-radius:8px;cursor:pointer;font-size:.95rem}
+  .tabs button[aria-selected="true"]{background:var(--blue);color:#fff;border-color:var(--blue)}
+  h2{font-size:1.05rem;color:var(--blue);margin:18px 0 8px}
+  .pairs{display:flex;gap:26px;flex-wrap:wrap;align-items:flex-start}
+  .pair{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px}
+  .arrow{font-size:1.4rem;color:var(--grey)}
+  .grid{display:grid;gap:1px;background:#6b7280;border:1px solid #6b7280;width:max-content}
+  .cell{background:#111}
+  .editable .cell{cursor:pointer}
+  .editable .cell:hover{outline:2px solid var(--accent);outline-offset:-2px}
+  .row{display:flex;gap:30px;flex-wrap:wrap;align-items:flex-start}
+  .panel{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px}
+  .panel h3{margin:0 0 8px;font-size:.9rem;color:var(--grey);font-weight:600}
+  .palette{display:flex;gap:6px;margin:10px 0;flex-wrap:wrap}
+  .sw{width:30px;height:30px;border-radius:6px;border:2px solid #fff;box-shadow:0 0 0 1px #94a3b8;cursor:pointer;color:#fff;font-size:.7rem;display:flex;align-items:center;justify-content:center;text-shadow:0 0 2px #000}
+  .sw[aria-pressed="true"]{box-shadow:0 0 0 3px var(--accent)}
+  .btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+  .btns button,.model button{border:1px solid var(--blue);background:#fff;color:var(--blue);padding:7px 12px;border-radius:8px;cursor:pointer;font-size:.9rem}
+  .btns button.primary,.model button.primary{background:var(--blue);color:#fff}
+  .msg{margin-top:10px;padding:8px 10px;border-radius:8px;font-size:.92rem;display:none}
+  .msg.ok{display:block;background:#dcfce7;color:#14532d}
+  .msg.bad{display:block;background:#fee2e2;color:#7f1d1d}
+  .msg.info{display:block;background:#e0e7ff;color:#1e3a8a}
+  textarea{width:100%;min-height:96px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.85rem;border:1px solid var(--line);border-radius:8px;padding:8px}
+  .model{margin-top:10px}
+  .small{font-size:.82rem;color:var(--grey)}
+  .rule{display:none;margin-top:10px}
+  .diff .cell.wrong{outline:3px solid var(--accent);outline-offset:-3px}
+  .legend{margin-top:18px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Infer the rule</h1>
+  <p>Three examples, one new input. Paint the output grid, then compare with the truth and with a model's answer. Works offline.</p>
+</header>
+<main>
+  <div class="tabs" role="tablist" id="tabs"></div>
+
+  <h2>Examples</h2>
+  <div class="pairs" id="pairs"></div>
+
+  <h2>Your turn</h2>
+  <div class="row">
+    <div class="panel"><h3>Test input</h3><div id="testIn"></div></div>
+    <div class="panel">
+      <h3>Your answer (click cells to paint)</h3>
+      <div id="answer" class="editable"></div>
+      <div class="palette" id="palette" role="group" aria-label="Colour palette"></div>
+      <div class="btns">
+        <button id="btnCopy">Start from input</button>
+        <button id="btnClear">Clear</button>
+        <button id="btnCheck" class="primary">Check my answer</button>
+        <button id="btnReveal">Reveal rule and truth</button>
+      </div>
+      <div id="msg" class="msg" role="status"></div>
+      <div id="ruleBox" class="rule"><strong>Rule:</strong> <span id="ruleText"></span></div>
+    </div>
+    <div class="panel" id="truthPanel" style="display:none"><h3>Ground truth</h3><div id="truth"></div></div>
+  </div>
+
+  <h2>What did the model say?</h2>
+  <div class="row">
+    <div class="panel" style="flex:1;min-width:300px">
+      <div class="model">
+        <p class="small">Paste the predicted grid from your live run: JSON like <code>[[0,1],[1,0]]</code>, or rows of digits one per line (<code>01200</code>). Then compare.</p>
+        <textarea id="modelText" placeholder="Paste the model's predicted grid here"></textarea>
+        <div class="btns">
+          <button id="btnModel" class="primary">Compare with truth</button>
+          <button id="btnSample">Fill an illustrative wrong answer</button>
+        </div>
+        <p class="small">The illustrative answer is a made-up example for rehearsal, not output from any real model.</p>
+        <div id="modelMsg" class="msg" role="status"></div>
+      </div>
+    </div>
+    <div class="panel" id="modelPanel" style="display:none"><h3>Model's grid (orange outline = wrong cell)</h3><div id="modelGrid" class="diff"></div></div>
+  </div>
+</main>
+
+<script>
+/*LOGIC-START*/
+const COLORS=['#111111','#0074D9','#FF4136','#2ECC40','#FFDC00','#AAAAAA','#F012BE','#FF851B','#7FDBFF','#870C25'];
+const N=5;
+function blank(){return Array.from({length:N},()=>Array(N).fill(0));}
+function clone(g){return g.map(r=>r.slice());}
+function equal(a,b){
+  if(a.length!==b.length) return false;
+  for(let i=0;i<a.length;i++){
+    if(a[i].length!==b[i].length) return false;
+    for(let j=0;j<a[i].length;j++) if(a[i][j]!==b[i][j]) return false;
+  }
+  return true;
+}
+const RULES={
+  down:{name:'Columns',
+    text:'Every coloured cell in the top row paints its whole column in that colour.',
+    apply:g=>{const o=blank();for(let c=0;c<N;c++){const v=g[0][c];if(v)for(let r=0;r<N;r++)o[r][c]=v;}return o;}},
+  mirror:{name:'Mirror',
+    text:'The grid is flipped left to right.',
+    apply:g=>g.map(r=>r.slice().reverse())},
+  swap:{name:'Swap colours',
+    text:'The two colours present exchange places; empty cells stay empty.',
+    apply:g=>{const set=[...new Set(g.flat().filter(v=>v))];if(set.length!==2)return clone(g);
+      const [a,b]=set;return g.map(r=>r.map(v=>v===a?b:v===b?a:v));}}
+};
+const PUZZLES=[
+ {rule:'down',
+  demos:[
+   [[1,0,0,2,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],
+   [[0,3,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],
+   [[4,0,6,0,3],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]],
+  test:[[0,2,0,7,1],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],
+  wrong:[[0,2,0,7,1],[0,2,0,7,1],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]},
+ {rule:'mirror',
+  demos:[
+   [[1,0,0,0,0],[1,1,0,0,0],[0,2,0,0,0],[0,0,0,0,0],[3,0,0,0,0]],
+   [[0,0,4,4,0],[0,0,0,6,0],[0,0,0,0,0],[8,0,0,0,0],[8,8,0,0,0]],
+   [[2,0,0,0,0],[0,0,0,0,0],[0,5,5,0,0],[0,0,0,0,9],[0,0,0,0,0]]],
+  test:[[0,0,0,0,7],[0,0,0,1,1],[0,0,3,0,0],[6,0,0,0,0],[0,0,0,0,0]],
+  wrong:[[7,0,0,0,0],[1,1,0,0,0],[0,0,3,0,0],[6,0,0,0,0],[0,0,0,0,0]]},
+ {rule:'swap',
+  demos:[
+   [[1,0,2,0,0],[0,1,0,0,0],[2,0,0,1,0],[0,0,0,0,2],[1,0,0,0,0]],
+   [[0,3,0,0,4],[3,0,0,4,0],[0,0,3,0,0],[0,4,0,0,0],[0,0,0,0,3]],
+   [[6,6,0,0,0],[0,0,0,7,0],[0,7,0,0,0],[0,0,6,0,0],[7,0,0,0,6]]],
+  test:[[0,2,0,0,8],[2,0,0,8,0],[0,0,2,0,0],[0,8,0,0,2],[0,0,0,0,0]],
+  wrong:[[0,2,0,0,8],[8,0,0,2,0],[0,0,8,0,0],[0,8,0,0,2],[0,0,0,0,0]]}
+];
+PUZZLES.forEach(p=>{p.demos=p.demos.map(i=>({input:i,output:RULES[p.rule].apply(i)}));p.truth=RULES[p.rule].apply(p.test);});
+
+/* Accepts JSON [[..],[..]] or lines of digits (optional spaces/commas). Returns {grid} or {error}. */
+function parseGrid(text){
+  const t=(text||'').trim();
+  if(!t) return {error:'Nothing to compare yet: paste a grid first.'};
+  let g=null;
+  if(t[0]==='['){
+    try{g=JSON.parse(t);}catch(e){return {error:'That looks like JSON but does not parse.'};}
+  }else{
+    g=t.split(/\r?\n/).map(l=>l.trim()).filter(l=>l.length).map(l=>l.replace(/[\s,]+/g,'').split('').map(Number));
+  }
+  if(!Array.isArray(g)||!g.length||!g.every(r=>Array.isArray(r)&&r.length===g[0].length))
+    return {error:'Rows must all be the same length.'};
+  if(!g.every(r=>r.every(v=>Number.isInteger(v)&&v>=0&&v<=9)))
+    return {error:'Cells must be digits 0 to 9.'};
+  return {grid:g};
+}
+function diffCells(pred,truth){
+  const out=[];
+  for(let r=0;r<Math.max(pred.length,truth.length);r++)
+    for(let c=0;c<Math.max((pred[r]||[]).length,(truth[r]||[]).length);c++)
+      if((pred[r]||[])[c]!==(truth[r]||[])[c]) out.push([r,c]);
+  return out;
+}
+/*LOGIC-END*/
+
+/* ---------- UI ---------- */
+const $=id=>document.getElementById(id);
+let cur=0, brush=2, answer=blank();
+
+function gridEl(g,cell,{editable=false,wrong=[]}={}){
+  const d=document.createElement('div');
+  d.className='grid'+(editable?' editable':'');
+  d.style.gridTemplateColumns=`repeat(${g[0].length},${cell}px)`;
+  g.forEach((row,r)=>row.forEach((v,c)=>{
+    const e=document.createElement('div');
+    e.className='cell'; e.style.width=e.style.height=cell+'px';
+    e.style.background=COLORS[v] ?? '#111';
+    if(wrong.some(w=>w[0]===r&&w[1]===c)) e.classList.add('wrong');
+    if(editable) e.addEventListener('click',()=>{answer[r][c]=brush;paint();});
+    d.appendChild(e);
+  }));
+  return d;
+}
+function paint(){
+  const box=$('answer'); box.innerHTML=''; box.appendChild(gridEl(answer,40,{editable:true}));
+}
+function showMsg(id,cls,text){const m=$(id);m.className='msg '+cls;m.textContent=text;}
+function load(i){
+  cur=i; const p=PUZZLES[i];
+  document.querySelectorAll('#tabs button').forEach((b,k)=>b.setAttribute('aria-selected',k===i));
+  const pairs=$('pairs'); pairs.innerHTML='';
+  p.demos.forEach(d=>{
+    const w=document.createElement('div'); w.className='pair';
+    w.appendChild(gridEl(d.input,22));
+    const a=document.createElement('span'); a.className='arrow'; a.textContent='→'; w.appendChild(a);
+    w.appendChild(gridEl(d.output,22)); pairs.appendChild(w);
+  });
+  $('testIn').innerHTML=''; $('testIn').appendChild(gridEl(p.test,40));
+  answer=blank(); paint();
+  ['msg','modelMsg'].forEach(id=>{$(id).className='msg';$(id).textContent='';});
+  $('ruleBox').style.display='none'; $('truthPanel').style.display='none';
+  $('modelPanel').style.display='none'; $('modelText').value='';
+}
+function init(){
+  PUZZLES.forEach((p,i)=>{
+    const b=document.createElement('button'); b.setAttribute('role','tab');
+    b.textContent=`Puzzle ${i+1}`; b.addEventListener('click',()=>load(i)); $('tabs').appendChild(b);
+  });
+  COLORS.forEach((c,i)=>{
+    const s=document.createElement('button'); s.className='sw'; s.style.background=c; s.textContent=i;
+    s.setAttribute('aria-label','colour '+i); s.setAttribute('aria-pressed',i===brush);
+    s.addEventListener('click',()=>{brush=i;document.querySelectorAll('.sw').forEach((x,k)=>x.setAttribute('aria-pressed',k===i));});
+    $('palette').appendChild(s);
+  });
+  $('btnClear').addEventListener('click',()=>{answer=blank();paint();});
+  $('btnCopy').addEventListener('click',()=>{answer=clone(PUZZLES[cur].test);paint();});
+  $('btnCheck').addEventListener('click',()=>{
+    const ok=equal(answer,PUZZLES[cur].truth);
+    showMsg('msg',ok?'ok':'bad',ok?'Correct: exact match.':'Not an exact match yet. Look at the examples again.');
+  });
+  $('btnReveal').addEventListener('click',()=>{
+    const p=PUZZLES[cur];
+    $('ruleText').textContent=RULES[p.rule].text; $('ruleBox').style.display='block';
+    $('truth').innerHTML=''; $('truth').appendChild(gridEl(p.truth,40)); $('truthPanel').style.display='block';
+  });
+  $('btnSample').addEventListener('click',()=>{$('modelText').value=JSON.stringify(PUZZLES[cur].wrong);});
+  $('btnModel').addEventListener('click',()=>{
+    const r=parseGrid($('modelText').value);
+    if(r.error){showMsg('modelMsg','info',r.error);$('modelPanel').style.display='none';return;}
+    const truth=PUZZLES[cur].truth, d=diffCells(r.grid,truth);
+    $('modelGrid').innerHTML=''; $('modelGrid').appendChild(gridEl(r.grid,40,{wrong:d}));
+    $('modelPanel').style.display='block';
+    showMsg('modelMsg',d.length?'bad':'ok',d.length?`Model is wrong: ${d.length} cell(s) differ from the truth. Exact match is required.`:'Model is correct: exact match.');
+  });
+  load(0);
+}
+init();
+</script>
+</body>
+</html>

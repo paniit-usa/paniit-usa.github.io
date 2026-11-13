@@ -188,6 +188,13 @@
     }
     .link-video:hover { background: #dc2626; color: white; border-color: #dc2626; }
 
+    .link-demo {
+      background: #f0fdf4;
+      color: #15803d;
+      border-color: #bbf7d0;
+    }
+    .link-demo:hover { background: #16a34a; color: white; border-color: #16a34a; }
+
     /* ── Footer ── */
     footer {
       text-align: center;
@@ -267,7 +274,8 @@
   /* ── Session data ── */
   /* Newest session first. Each session has three talks.
      fullVideo: one recording of the whole session (optional).
-     Per-talk slides/video: leave "" if not available. */
+     Per-talk slides/video: leave "" if not available.
+     demo: optional link to an interactive demo. */
   const sessions = [
     {
       title: "November 2026 Show &amp; Tell",
@@ -277,7 +285,7 @@
       talks: [
         { speaker: "Suresh Shenoy",  topic: "The challenge of using Gen AI for personal history research", slides: "../slides/Nov-SAT_AI Memoir Platforms and Why Remento ver 5.0 - Final.pdf", video: "" },
         { speaker: "Soumitra Ghosh", topic: "Measuring small changes to a RAG harness",                    slides: "../slides/Nov-SAT_RAG Test Harness Show and Tell.pdf", video: "" },
-        { speaker: "Govind T.",      topic: "Machine reasoning and ARC AGI",                               slides: "../slides/Nov-SAT_my-arcagi-slides-Final.pdf", video: "" }
+        { speaker: "Govind T.",      topic: "Machine reasoning and ARC AGI",                               slides: "../slides/Nov-SAT_my-arcagi-slides-Final.pdf", video: "", demo: "../slides/Nov-SAT_infer-the-rule.html" }
       ]
     }
   ];
@@ -291,6 +299,8 @@
   const slideIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`;
   const videoIcon = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C.488 3.45.029 5.804 0 12c.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0C23.512 20.55 23.971 18.196 24 12c-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 4-8 4z"/></svg>`;
 
+  const demoIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>`;
+
   /* ── Render ── */
   const container = document.getElementById("sessions");
 
@@ -298,7 +308,8 @@
     const rows = s.talks.map((t, i) => {
       const links = [
         t.slides ? `<a class="icon-link link-slides" href="${t.slides}" target="_blank" rel="noopener">${slideIcon}<span>Slides</span></a>` : "",
-        t.video  ? `<a class="icon-link link-video"  href="${t.video}"  target="_blank" rel="noopener">${videoIcon}<span>Video</span></a>`  : ""
+        t.video  ? `<a class="icon-link link-video"  href="${t.video}"  target="_blank" rel="noopener">${videoIcon}<span>Video</span></a>`  : "",
+        t.demo   ? `<a class="icon-link link-demo"   href="${t.demo}"   target="_blank" rel="noopener">${demoIcon}<span>Try it</span></a>` : ""
       ].join("");
       return `
         <tr>
