@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PANIIT USA — AI Talks &amp; Webinars</title>
+  <title>PANIIT USA — AI</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -76,155 +76,60 @@
     /* ── Main ── */
     main {
       max-width: 1050px;
-      margin: 2.5rem auto;
+      margin: 3rem auto;
       padding: 0 1.5rem 4rem;
     }
 
-    /* ── Search bar ── */
-    .search-wrap {
-      margin-bottom: 1.5rem;
-      position: relative;
-    }
-    .search-wrap svg {
-      position: absolute;
-      left: 1rem;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 17px; height: 17px;
-      color: #94a3b8;
-      pointer-events: none;
-    }
-    #search {
-      width: 100%;
-      padding: 0.75rem 1rem 0.75rem 2.75rem;
-      font-size: 0.95rem;
-      border: 1.5px solid #e2e8f0;
-      border-radius: 10px;
-      background: white;
-      color: #1e293b;
-      outline: none;
-      transition: border-color 0.15s, box-shadow 0.15s;
-    }
-    #search:focus {
-      border-color: #1a3a5c;
-      box-shadow: 0 0 0 3px rgba(26,58,92,0.1);
-    }
-    #search::placeholder { color: #94a3b8; }
-    .no-results {
-      text-align: center;
-      padding: 2.5rem;
-      color: #94a3b8;
-      font-style: italic;
-      display: none;
-    }
+    .intro { max-width: 680px; margin-bottom: 2.5rem; }
+    .intro h2 { font-size: 1.6rem; color: #0f2540; margin-bottom: 0.6rem; }
+    .intro p { color: #475569; font-size: 1.02rem; line-height: 1.65; }
 
-    /* ── Table wrapper ── */
-    .table-wrap {
+    /* ── Activity cards ── */
+    .activities {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    @media (max-width: 860px) { .activities { grid-template-columns: 1fr; } }
+
+    .activity {
       background: white;
       border: 1px solid #e2e8f0;
-      border-radius: 14px;
+      border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 1px 8px rgba(0,0,0,0.06);
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.92rem;
-    }
-
-    thead tr {
-      background: #1a3a5c;
-      color: white;
-    }
-    thead th {
-      padding: 0.85rem 1.1rem;
-      text-align: left;
-      font-weight: 600;
-      font-size: 0.78rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    tbody tr {
-      border-bottom: 1px solid #f1f5f9;
-      transition: background 0.15s;
-    }
-    tbody tr:last-child { border-bottom: none; }
-    tbody tr:hover { background: #f8faff; }
-
-    td {
-      padding: 0.85rem 1.1rem;
-      vertical-align: middle;
-    }
-
-    /* Date cell */
-    .td-date {
-      white-space: nowrap;
-      font-variant-numeric: tabular-nums;
-      color: #475569;
-      font-size: 0.85rem;
-    }
-    .date-badge {
-      display: inline-block;
-      background: #eff6ff;
-      color: #1d4ed8;
-      border-radius: 6px;
-      padding: 0.2rem 0.55rem;
-      font-weight: 600;
-      font-size: 0.8rem;
-    }
-
-    /* Speaker cell */
-    .speaker {
-      font-weight: 600;
-      color: #0f2540;
-    }
-
-    /* Topic cell */
-    .topic {
-      color: #334155;
-      line-height: 1.4;
-    }
-    .no-data {
-      color: #cbd5e1;
-      font-style: italic;
-      font-size: 0.82rem;
-    }
-
-    /* Links column */
-    .links-cell {
-      white-space: nowrap;
-    }
-    .icon-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      padding: 0.35rem 0.7rem;
-      border-radius: 6px;
-      font-size: 0.78rem;
-      font-weight: 600;
       text-decoration: none;
-      margin-right: 0.35rem;
-      border: 1.5px solid transparent;
-      transition: all 0.15s;
+      color: inherit;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+      transition: box-shadow 0.18s, transform 0.18s, border-color 0.18s;
     }
-    .icon-link svg { width: 14px; height: 14px; flex-shrink: 0; }
-
-    .link-slides {
-      background: #fff7ed;
-      color: #c2410c;
-      border-color: #fed7aa;
+    .activity:hover {
+      box-shadow: 0 10px 28px rgba(0,0,0,0.1);
+      transform: translateY(-3px);
+      border-color: #1a3a5c;
     }
-    .link-slides:hover { background: #f97316; color: white; border-color: #f97316; }
-
-    .link-video {
-      background: #fef2f2;
-      color: #dc2626;
-      border-color: #fecaca;
+    .activity .band {
+      height: 110px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.8rem;
     }
-    .link-video:hover { background: #dc2626; color: white; border-color: #dc2626; }
+    .band-webinars { background: linear-gradient(135deg, #1a3a5c, #2b5a8a); }
+    .band-show { background: linear-gradient(135deg, #f97316, #fbbf24); }
+    .band-whatsapp { background: linear-gradient(135deg, #128c7e, #25d366); }
+    .activity .body { padding: 1.4rem 1.4rem 1.5rem; display: flex; flex-direction: column; flex: 1; }
+    .activity .kicker {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: #94a3b8; margin-bottom: 0.35rem;
+    }
+    .activity h3 { font-size: 1.25rem; color: #0f2540; margin-bottom: 0.5rem; }
+    .activity p { font-size: 0.92rem; color: #64748b; line-height: 1.55; flex: 1; }
+    .activity .go {
+      margin-top: 1rem; font-size: 0.85rem; font-weight: 600; color: #f97316;
+    }
 
     /* ── Footer ── */
     footer {
@@ -234,12 +139,6 @@
       font-size: 0.8rem;
     }
     footer a { color: #64748b; }
-
-    @media (max-width: 680px) {
-      header h1 { font-size: 1.5rem; }
-      thead th, td { padding: 0.65rem 0.7rem; font-size: 0.82rem; }
-      .icon-link span { display: none; }
-    }
   </style>
 </head>
 <body>
@@ -251,53 +150,47 @@
   <div class="header-text">
     <div class="org-name">PANIIT USA</div>
     <div class="breadcrumb"><a href="../">← Home</a></div>
-    <h1>AI Talks &amp; Webinars</h1>
-    <p>A curated series of talks by IIT alumni — covering AI, quantum computing, and emerging technology.</p>
+    <h1>AI at PANIIT USA</h1>
+    <p>Learn, share, and explore artificial intelligence with fellow IIT alumni.</p>
   </div>
 </header>
 
 <main>
 
-  <div class="search-wrap">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-    </svg>
-    <input id="search" type="search" placeholder="Search by speaker, topic, date…" autocomplete="off" />
+  <div class="intro">
+    <h2>Welcome</h2>
+    <p>Our AI community brings IIT alumni together to make sense of a fast-moving field — from expert talks to hands-on demos to everyday conversation. Pick the activity that suits you.</p>
   </div>
 
-  <div class="table-wrap">
-    <table id="talks-table">
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Speaker</th>
-          <th>Topic</th>
-          <th>Resources</th>
-        </tr>
-      </thead>
-      <tbody id="talks-body">
-        <!-- Populated by JS below -->
-      </tbody>
-      <tfoot>
-        <tr id="no-results-row" style="display:none">
-          <td colspan="4" class="no-results" style="display:table-cell">No talks match your search.</td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
+  <div class="activities">
+    <a class="activity" href="webinars.html">
+      <div class="band band-webinars">🎙️</div>
+      <div class="body">
+        <div class="kicker">Talks</div>
+        <h3>AI Webinars</h3>
+        <p>Talks by IIT alumni on AI, quantum computing, and emerging technology — with slides and recordings to catch up on.</p>
+        <div class="go">Browse webinars &rarr;</div>
+      </div>
+    </a>
 
-  <div style="margin-top:1.25rem;display:flex;flex-wrap:wrap;gap:0.6rem;">
-    <a href="show_and_tell.html" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.88rem;font-weight:600;color:white;text-decoration:none;border:1.5px solid #1a3a5c;border-radius:8px;padding:0.45rem 0.9rem;background:#1a3a5c;transition:all 0.15s;" onmouseover="this.style.background='#0f2540'" onmouseout="this.style.background='#1a3a5c'">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;flex-shrink:0"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-      AI Show &amp; Tell
+    <a class="activity" href="show_and_tell.html">
+      <div class="band band-show">🛠️</div>
+      <div class="body">
+        <div class="kicker">Demos</div>
+        <h3>AI Show &amp; Tell</h3>
+        <p>Three short, technical presentations and demos in one hour — for those who want to look under the hood of AI systems.</p>
+        <div class="go">See the sessions &rarr;</div>
+      </div>
     </a>
-    <a href="presentation_guidelines.html" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.88rem;font-weight:600;color:#1a3a5c;text-decoration:none;border:1.5px solid #cbd5e1;border-radius:8px;padding:0.45rem 0.9rem;background:white;transition:all 0.15s;" onmouseover="this.style.borderColor='#1a3a5c';this.style.background='#f0f4f8'" onmouseout="this.style.borderColor='#cbd5e1';this.style.background='white'">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;flex-shrink:0"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-      Presentation Guidelines
-    </a>
-    <a href="show_and_tell_guidelines.html" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.88rem;font-weight:600;color:#1a3a5c;text-decoration:none;border:1.5px solid #cbd5e1;border-radius:8px;padding:0.45rem 0.9rem;background:white;transition:all 0.15s;" onmouseover="this.style.borderColor='#1a3a5c';this.style.background='#f0f4f8'" onmouseout="this.style.borderColor='#cbd5e1';this.style.background='white'">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;flex-shrink:0"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-      Show &amp; Tell Guidelines
+
+    <a class="activity" role="link" tabindex="0">
+      <div class="band band-whatsapp">💬</div>
+      <div class="body">
+        <div class="kicker">Community</div>
+        <h3>AI WhatsApp Groups</h3>
+        <p>Keep the conversation going between sessions — share articles, ask questions, and swap ideas with fellow alumni.</p>
+        <div class="go">Join a group &rarr;</div>
+      </div>
     </a>
   </div>
 
@@ -306,127 +199,6 @@
 <footer>
   <p>PANIIT USA &nbsp;·&nbsp; <a href="https://github.com/paniit-usa" target="_blank">github.com/paniit-usa</a></p>
 </footer>
-
-<script>
-  /* ── Talk data ── */
-  /* To add a new row, append an object to this array.
-     Leave slides or video as "" if not available. */
-  const talks = [
-    {
-      date: "2026-10-29",
-      speaker: "Kas Subramanian",
-      topic: "Transforming Pharma: The promise of AI in developing better medicines faster",
-      slides: "../slides/2026-10-30_AI_in_Drug_Discovery.pdf",
-      video: "https://youtu.be/PS6v13n0Dmo"
-    },
-    {
-      date: "2026-10-15",
-      speaker: "Avinash Reddy, IIT B Alum",
-      topic: "Do More Dollars Always Buy More AI Intelligence?",
-      slides: "../slides/Intelligence Per Dollar - Final.pdf",
-      video: "https://youtu.be/hYEryJg2kPU"
-    },
-    {
-      date: "2026-10-01",
-      speaker: "Prof. Giri Narasimhan",
-      topic: "The Future of Learning in the Age of AI",
-      slides: "../slides/2026OCT01-Giri-PanIIT-Talk.pdf",
-      video: "https://youtu.be/MHKvGOH4mQE"
-    },
-    {
-      date: "2026-09-17",
-      speaker: "Dr. Roopesh Mathur",
-      topic: "From Qubits to Quantum Computing",
-      slides: "../slides/PanIIT USA - Introduction to Quantum Computing -Roopesh Mathur- 09172026.pdf",
-      video: "https://www.youtube.com/watch?v=C3IJcbLYPCk"
-    },
-    {
-      date: "2026-08-28",
-      speaker: "Kannan Govindarajan",
-      topic: "AI in Healthcare — Hype, Hope and Evidence",
-      slides: "../slides/AI_in_Healthcare_Visual_v2_uniform.pdf",
-      video: "https://youtu.be/6lQDw3cJ390"
-    },
-    {
-      date: "2026-06-25",
-      speaker: "Lokesh Johri",
-      topic: "Bandits to Reinforcement Learning",
-      slides: "../slides/K-Armed-Bandit-Basics.pdf",
-      video: "https://youtu.be/tUk5wbFMyys"
-    },
-    {
-      date: "2026-06-11",
-      speaker: "Himanshu Verma",
-      topic: "Applied Generative AI",
-      slides: "",
-      video: ""
-    },
-    {
-      date: "2026-04-27",
-      speaker: "Rahul Tripathi",
-      topic: "Fine-tuning Small Language Models (SLMs)",
-      slides: "https://ljohri.github.io/ai-info/assets/files/fine-tuning-small-language-models.pdf",
-      video: "https://youtu.be/ul9dONg-3mM"
-    }
-  ];
-
-  /* ── Helpers ── */
-  function fmtDate(iso) {
-    const d = new Date(iso + "T00:00:00");
-    return d.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
-  }
-
-  const slideIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`;
-  const videoIcon = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C.488 3.45.029 5.804 0 12c.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0C23.512 20.55 23.971 18.196 24 12c-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 4-8 4z"/></svg>`;
-
-  /* ── Render ── */
-  const tbody = document.getElementById("talks-body");
-
-  talks.forEach(t => {
-    const tr = document.createElement("tr");
-
-    const links = [
-      t.slides ? `<a class="icon-link link-slides" href="${t.slides}" target="_blank" rel="noopener">${slideIcon}<span>Slides</span></a>` : "",
-      t.video  ? `<a class="icon-link link-video"  href="${t.video}"  target="_blank" rel="noopener">${videoIcon}<span>Video</span></a>`  : ""
-    ].join("");
-
-    tr.innerHTML = `
-      <td class="td-date"><span class="date-badge">${fmtDate(t.date)}</span></td>
-      <td><span class="speaker">${t.speaker}</span></td>
-      <td class="topic">${t.topic || '<span class="no-data">TBA</span>'}</td>
-      <td class="links-cell">${links || '<span class="no-data">—</span>'}</td>
-    `;
-    tbody.appendChild(tr);
-  });
-
-  /* ── Fuzzy search ── */
-  function fuzzyMatch(query, text) {
-    // Returns true if all characters of query appear in order within text
-    query = query.toLowerCase();
-    text  = text.toLowerCase();
-    let qi = 0;
-    for (let i = 0; i < text.length && qi < query.length; i++) {
-      if (text[i] === query[qi]) qi++;
-    }
-    return qi === query.length;
-  }
-
-  document.getElementById("search").addEventListener("input", function () {
-    const q = this.value.trim();
-    const rows = tbody.querySelectorAll("tr");
-    let visible = 0;
-
-    rows.forEach((tr, i) => {
-      const t = talks[i];
-      const haystack = [t.date, t.speaker, t.topic, fmtDate(t.date)].join(" ");
-      const show = !q || fuzzyMatch(q, haystack);
-      tr.style.display = show ? "" : "none";
-      if (show) visible++;
-    });
-
-    document.getElementById("no-results-row").style.display = visible === 0 ? "" : "none";
-  });
-</script>
 
 </body>
 </html>
