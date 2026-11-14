@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Strategic Pillars — Rethinking PANIIT</title>
+  <meta name="description" content="The five strategic pillars of Rethinking PANIIT: brand, engagement, platform, chapters, and events." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="site.css" />
+</head>
+<body>
+
+<header class="hero short">
+  <canvas aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="eyebrow">Strategic Pillars</div>
+    <h1>Five pillars. <span class="grad-text">One transformation.</span></h1>
+    <p class="sub">Each pillar sets an objective, names where we are today, and proposes initiatives to get us there.</p>
+  </div>
+</header>
+
+<section class="block" style="padding-top:2rem">
+  <div class="wrap">
+    <div class="grid g5" id="pillar-cards" style="margin-bottom:3rem"></div>
+    <div class="pillars-layout">
+      <ul class="side-nav" id="side-nav"></ul>
+      <div id="pillar-details"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Extras injected into specific pillars -->
+<template id="extra-engagement">
+  <h3>Young IITians Workshop: questions to explore</h3>
+  <div class="table-wrap">
+    <table class="table">
+      <thead><tr><th>Area</th><th>Question</th></tr></thead>
+      <tbody>
+        <tr><td>Professional networking</td><td>What professional value can PANIIT provide?</td></tr>
+        <tr><td>Entrepreneurship</td><td>Can we create a stronger startup and investor ecosystem?</td></tr>
+        <tr><td>Mentorship</td><td>What would make mentorship useful and attractive?</td></tr>
+        <tr><td>Technology</td><td>Can we build vibrant AI, technology, and innovation communities?</td></tr>
+        <tr><td>Social impact</td><td>How can IIT talent address significant societal challenges?</td></tr>
+        <tr><td>Philanthropy</td><td>Can we mobilize alumni around larger, more ambitious initiatives?</td></tr>
+        <tr><td>Social engagement</td><td>What activities would attract younger alumni?</td></tr>
+        <tr><td>Global connections</td><td>How can PANIIT facilitate international opportunities?</td></tr>
+      </tbody>
+    </table>
+  </div>
+</template>
+<template id="extra-platform">
+  <h3>An event shouldn't end when the webinar ends</h3>
+  <div class="flow">
+    <span class="step"><b>1</b>Register</span><span class="arr">→</span>
+    <span class="step"><b>2</b>Participate</span><span class="arr">→</span>
+    <span class="step"><b>3</b>Slides &amp; recording</span><span class="arr">→</span>
+    <span class="step"><b>4</b>Summary &amp; takeaways</span><span class="arr">→</span>
+    <span class="step"><b>5</b>Connect with peers</span><span class="arr">→</span>
+    <span class="step"><b>6</b>Topic community</span><span class="arr">→</span>
+    <span class="step"><b>7</b>Follow-up activities</span>
+  </div>
+</template>
+<template id="extra-events">
+  <h3>A three-tier event model</h3>
+  <div class="grid g3" style="margin-top:0.75rem">
+    <div class="card"><span class="badge tbd">Tier A</span><h3 style="margin-top:0.6rem">Flagship</h3><p>The biennial PANIIT USA gathering — Dallas 2028 is next.</p></div>
+    <div class="card"><span class="badge tbd">Tier B</span><h3 style="margin-top:0.6rem">Regional</h3><p>City gatherings, regional conferences, industry and Young IITians meetups.</p></div>
+    <div class="card"><span class="badge tbd">Tier C</span><h3 style="margin-top:0.6rem">Virtual &amp; special-interest</h3><p><a href="../ai/show_and_tell.html" style="color:var(--orange)">AI Show &amp; Tell</a>, tech seminars, founder forums, distinguished alumni talks.</p></div>
+  </div>
+</template>
+
+<section class="block alt">
+  <div class="wrap">
+    <div class="eyebrow reveal">Supporting opportunities</div>
+    <h2 class="h2 reveal">Beyond the five pillars</h2>
+    <div class="grid g2" style="margin-top:2rem">
+      <div class="card reveal">
+        <span class="icon">🌱</span>
+        <h3>Philanthropy &amp; social impact</h3>
+        <p>Could PANIIT mobilize alumni around larger goals — supporting institutions, funding research, serving underserved communities, and lending expertise to public-interest projects?</p>
+      </div>
+      <div class="card reveal">
+        <span class="icon">🏛️</span>
+        <h3>Institutional knowledge &amp; recognition</h3>
+        <p>Capture and showcase alumni experience: distinguished alumni profiles, oral histories, industry and entrepreneurship journeys, and contributions to science and technology.</p>
+      </div>
+    </div>
+    <div class="btns reveal" style="margin-top:2.5rem">
+      <a class="btn btn-primary" href="initiatives.html">See the initiatives →</a>
+    </div>
+  </div>
+</section>
+
+<script src="data.js"></script>
+<script>
+  /* Place the extra content blocks inside their pillar sections */
+  function onPageReady() {
+    document.querySelectorAll(".pillar-extra").forEach(slot => {
+      const tpl = document.getElementById("extra-" + slot.dataset.pillar);
+      if (tpl) slot.appendChild(tpl.content.cloneNode(true));
+    });
+    const links = [...document.querySelectorAll("#side-nav a")];
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (en.isIntersecting) links.forEach(a => a.classList.toggle("active", a.hash === "#" + en.target.id));
+      });
+    }, { rootMargin: "-40% 0px -55% 0px" });
+    document.querySelectorAll(".pillar-detail").forEach(s => io.observe(s));
+  }
+</script>
+<script src="site.js"></script>
+</body>
+</html>
