@@ -48,15 +48,28 @@
       padding: 0 1.5rem;
       text-align: center;
     }
-    .coming-soon {
+    .panel {
       background: white;
       border: 1px solid #e2e8f0;
       border-radius: 16px;
       padding: 3rem 2rem;
       box-shadow: 0 1px 8px rgba(0,0,0,0.06);
     }
-    .coming-soon h2 { font-size: 1.5rem; color: #1a3a5c; margin-bottom: 0.75rem; }
-    .coming-soon p { color: #64748b; line-height: 1.6; }
+    .panel + .panel { margin-top: 1.25rem; }
+    .panel h2 { font-size: 1.5rem; color: #1a3a5c; margin-bottom: 0.75rem; }
+    .panel p, .panel li { color: #64748b; line-height: 1.6; }
+    .panel ul { padding-left: 1.2rem; margin-top: 0.5rem; display: inline-block; text-align: left; }
+    .panel li { margin: 0.3rem 0; }
+    .panel strong { color: #1e293b; }
+    .tiles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1rem; }
+    .tile { border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.25rem; background: #f8fafc; }
+    .tile h3 { color: #0f2540; font-size: 1.1rem; margin-bottom: 0.3rem; }
+    @media (max-width: 560px) { .tiles { grid-template-columns: 1fr; } }
+    .contact-btn {
+      display: inline-block; margin-top: 1rem; background: #f97316; color: white; font-weight: 600;
+      text-decoration: none; padding: 0.7rem 1.2rem; border-radius: 10px;
+    }
+    .contact-btn:hover { background: #ea580c; }
     footer { text-align: center; padding: 1.5rem; color: #94a3b8; font-size: 0.8rem; }
     footer a { color: #64748b; }
   </style>
@@ -76,9 +89,28 @@
 </header>
 
 <main>
-  <div class="coming-soon">
-    <h2>Coming Soon</h2>
-    <p>The PANIIT Scholarships page is under construction. Check back soon for details on available scholarships, eligibility criteria, and application processes.</p>
+  <div class="panel">
+    <h2>Our scholarships</h2>
+    <p>PANIIT USA scholarships support students at two stages of their education.</p>
+    <div class="tiles">
+      <div class="tile"><h3>🎓 Graduate</h3><p>For students pursuing graduate studies.</p></div>
+      <div class="tile"><h3>🏫 High School</h3><p>For high school students taking their next step.</p></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>How awards are made</h2>
+    <ul>
+      <li>Scholarships are awarded on <strong>merit</strong>, <strong>financial need</strong>, and <strong>personal background</strong>.</li>
+      <li>Our goals: <strong>education</strong>, <strong>inclusivity</strong>, and <strong>alumni legacy</strong>.</li>
+    </ul>
+  </div>
+
+  <div class="panel">
+    <h2>Apply or support a scholarship</h2>
+    <p>For eligibility, application details, or to contribute to a scholarship fund, contact the scholarships team.</p>
+    <!-- PLACEHOLDER email: replace with the real scholarships contact -->
+    <a class="contact-btn" href="mailto:scholarships@iit.org">✉️ scholarships@iit.org</a>
   </div>
 </main>
 
