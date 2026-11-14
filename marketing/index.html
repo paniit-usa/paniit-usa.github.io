@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PANIIT USA — Marketing</title>
+  <meta name="description" content="Building a unified, modern, and influential PANIIT USA brand — one that honors our legacy while shaping the future." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="site.css" />
+</head>
+<body>
+
+<div class="topbar">
+  <div class="inner">
+    <a class="brand" href="../"><img src="../assets/public/logo.jpg" alt="" />PANIIT <span>USA</span></a>
+    <nav>
+      <a class="home" href="../">Home</a>
+      <a class="active" href="index.html">Marketing</a>
+      <a href="dallas-2028.html">Dallas 2028</a>
+    </nav>
+  </div>
+</div>
+
+<header class="hero navy">
+  <span class="shape" style="width:420px;height:420px;right:-120px;top:-140px"></span>
+  <span class="shape" style="width:220px;height:220px;right:180px;bottom:-120px;opacity:0.08"></span>
+  <div class="wrap">
+    <div class="eyebrow">PANIIT USA Marketing</div>
+    <h1>Honoring our legacy.<br /><span style="color:var(--orange)">Shaping the future.</span></h1>
+    <p class="sub">Strengthening PANIIT USA as the premier brand for IIT alumni across the United States — uniting alumni, energizing chapters, and reaching a new generation.</p>
+    <div class="btns">
+      <a class="btn btn-primary" data-contact="joinTeam">Join the marketing team</a>
+      <a class="btn btn-ghost" href="dallas-2028.html">Dallas 2028 →</a>
+    </div>
+    <div class="mantra"><small>Our brand mantra</small>To be defined with chapter presidents — coming soon</div>
+  </div>
+</header>
+
+<!-- Brand vision -->
+<section class="block white">
+  <div class="wrap grid g2" style="gap:3rem;align-items:center">
+    <div class="reveal">
+      <div class="eyebrow">Brand vision</div>
+      <h2 class="h2">The most trusted, visible, and future-ready alumni ecosystem in the US.</h2>
+    </div>
+    <div class="reveal">
+      <p class="lead">Known for innovation, leadership, entrepreneurship, and community impact — embodying the IIT ethos of <strong style="color:var(--ink)">intellectual rigor</strong>, <strong style="color:var(--ink)">entrepreneurial spirit</strong>, and <strong style="color:var(--ink)">service to society</strong>, while appealing to a new generation of alumni and allies.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Goals -->
+<section class="block">
+  <div class="wrap">
+    <div class="eyebrow reveal">What we're working on</div>
+    <h2 class="h2 reveal">Five strategic goals</h2>
+    <div class="grid g5" id="goals" style="margin-top:2rem"></div>
+  </div>
+</section>
+
+<!-- Generations -->
+<section class="block band">
+  <div class="wrap">
+    <div class="eyebrow reveal">Engagement across generations</div>
+    <h2 class="h2 reveal">Something for every stage of an IIT career</h2>
+    <p class="lead reveal" style="margin-bottom:2rem">Tailored pathways so every alumnus finds a reason to take part.</p>
+    <div class="grid g3" id="generations"></div>
+  </div>
+</section>
+
+<!-- Channels -->
+<section class="block white">
+  <div class="wrap">
+    <div class="eyebrow reveal">Where to find us</div>
+    <h2 class="h2 reveal">Our channels</h2>
+    <div class="grid g5" id="channels" style="margin-top:2rem"></div>
+  </div>
+</section>
+
+<!-- Content priorities -->
+<section class="block">
+  <div class="wrap center">
+    <div class="eyebrow reveal">The stories we tell</div>
+    <h2 class="h2 reveal">Content priorities</h2>
+    <div class="chips reveal" id="priorities" style="margin-top:1.5rem"></div>
+  </div>
+</section>
+
+<!-- Coming soon -->
+<section class="block white">
+  <div class="wrap grid g2">
+    <div class="card reveal">
+      <span class="tag">Coming soon</span>
+      <span class="icon" style="margin-top:1rem">🎙️</span>
+      <h3>Alumni Voices</h3>
+      <p>A national storytelling series — podcasts and features spotlighting IIT alumni achievements across industries.</p>
+    </div>
+    <div class="card reveal">
+      <span class="tag">Coming soon</span>
+      <span class="icon" style="margin-top:1rem">📘</span>
+      <h3>Chapter Marketing Playbook</h3>
+      <p>Templates, brand guidelines, social media kits, and event-promotion frameworks for every chapter.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Dallas feature -->
+<section class="block">
+  <div class="wrap">
+    <a class="feature reveal" href="dallas-2028.html">
+      <div>
+        <div class="eyebrow" style="color:#fff7ed">Flagship campaign</div>
+        <h2>One IIT family. Many campuses. One unforgettable reunion.</h2>
+        <p style="margin-top:0.8rem">Reconnect · Celebrate · Give Back — see how you can be part of it →</p>
+      </div>
+      <div class="big">Dallas<br />2028</div>
+    </a>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="block band">
+  <div class="wrap center">
+    <h2 class="h2 reveal">Help us tell the IIT story.</h2>
+    <p class="lead reveal" style="margin-bottom:2rem">Writers, designers, social media natives, photographers, and storytellers — we'd love your help.</p>
+    <div class="btns reveal" style="justify-content:center">
+      <a class="btn btn-primary" data-contact="joinTeam">Join the marketing team</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  PANIIT USA &nbsp;·&nbsp; <a href="../">Home</a> &nbsp;·&nbsp; <a href="../services/">Services</a>
+</footer>
+
+<script src="data.js"></script>
+<script>
+  function onPageReady() {
+    document.getElementById("goals").innerHTML = GOALS.map((g, i) => `
+      <div class="card reveal"><span class="num">0${i + 1}</span><h3>${g.title}</h3><p>${g.text}</p></div>`).join("");
+    document.getElementById("generations").innerHTML = GENERATIONS.map(g => `
+      <div class="card gen ${g.cls} reveal">
+        <div class="years">${g.years}</div><h3>${g.title}</h3>
+        <ul>${g.items.map(x => `<li>${x}</li>`).join("")}</ul>
+      </div>`).join("");
+    document.getElementById("channels").innerHTML = CHANNELS.map(c => `
+      <div class="card channel ${c.flagship ? "flagship" : ""} reveal">
+        <div class="logo" style="background:${c.color}">${c.short}</div>
+        <h3>${c.name}</h3>
+        ${c.flagship ? `<span class="tag" style="margin-bottom:0.5rem">Flagship</span>` : ""}
+        <p>${c.role}</p>
+      </div>`).join("");
+    document.getElementById("priorities").innerHTML = CONTENT_PRIORITIES.map(p => `<span class="chip">${p}</span>`).join("");
+  }
+</script>
+<script src="site.js"></script>
+</body>
+</html>
