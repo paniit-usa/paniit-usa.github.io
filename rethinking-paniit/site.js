@@ -56,7 +56,7 @@ function renderChrome() {
 
 /* ── Contact buttons: <a data-contact="volunteer"> ── */
 function contactHref(key) {
-  const v = (typeof CONTACT !== "undefined" && CONTACT[key]) || "";
+  const v = (typeof CONTACT !== "undefined" && (CONTACT[key] || CONTACT.fallback)) || "";
   if (!v) return "";
   return v.includes("@") && !v.startsWith("http") ? `mailto:${v}` : v;
 }
@@ -68,9 +68,6 @@ function wireContacts(root = document) {
       if (href.startsWith("http")) { a.target = "_blank"; a.rel = "noopener"; }
     } else {
       a.removeAttribute("href");
-      a.setAttribute("aria-disabled", "true");
-      a.title = "Coming soon";
-      if (!a.querySelector(".soon")) a.insertAdjacentHTML("beforeend", ` <span class="soon">· soon</span>`);
     }
   });
 }

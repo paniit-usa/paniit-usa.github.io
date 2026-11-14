@@ -139,8 +139,6 @@ section.block.alt { background: var(--bg-2); }
 .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(249,115,22,0.5); }
 .btn-ghost { border-color: rgba(255,255,255,0.25); color: white; background: rgba(255,255,255,0.04); }
 .btn-ghost:hover { background: rgba(255,255,255,0.1); }
-.btn[aria-disabled="true"] { opacity: 0.55; cursor: not-allowed; transform: none; box-shadow: none; }
-.btn .soon { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.8; }
 
 /* ── Cards & grids ── */
 .grid { display: grid; gap: 1.25rem; }
@@ -331,3 +329,6 @@ footer.site .base { margin-top: 2.5rem; font-size: 0.8rem; color: var(--dim); }
 
 /* Cards nested inside a pillar section keep normal card headings */
 .pillar-detail .card h3 { color: white; font-family: var(--display); text-transform: none; letter-spacing: -0.01em; font-size: 1.1rem; margin: 0.6rem 0 0.4rem; }
+
+/* Buttons without a link yet still look and feel clickable */
+a.btn:not([href]) { cursor: pointer; }

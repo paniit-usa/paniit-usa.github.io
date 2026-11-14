@@ -1,13 +1,15 @@
 /* ── Marketing content ──
-   CONTACT: leave a link "" to show a disabled "Coming soon" button.
+   CONTACT: any link left "" uses `fallback` instead.
+   PLACEHOLDER: the @iit.org addresses below are made up — replace with real ones.
    Links can be a URL (e.g. a Google Form) or an email address. */
 
 const CONTACT = {
-  joinTeam: "",          // join the marketing team
-  dallasInterest: "",    // Dallas 2028 interest form
-  batchCaptain: "",      // become a batch captain
-  sponsor: "",           // sponsor prospectus / contact
-  volunteerRoles: ""     // Dallas 2028 volunteer roles
+  joinTeam: "marketing@iit.org",          // join the marketing team
+  dallasInterest: "dallas2028@iit.org",    // Dallas 2028 interest form
+  batchCaptain: "dallas2028@iit.org",      // become a batch captain
+  sponsor: "sponsorship@iit.org",           // sponsor prospectus / contact
+  volunteerRoles: "dallas2028@iit.org",    // Dallas 2028 volunteer roles
+  fallback: "marketing@iit.org"           // used by every button above that has no link of its own
 };
 
 /* Dallas 2028: set the date (YYYY-MM-DD) once confirmed to show a countdown. */

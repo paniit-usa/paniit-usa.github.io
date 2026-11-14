@@ -4,15 +4,12 @@
 
 function wireContacts() {
   document.querySelectorAll("[data-contact]").forEach(a => {
-    const v = (CONTACT[a.dataset.contact] || "").trim();
+    const v = (CONTACT[a.dataset.contact] || CONTACT.fallback || "").trim();
     if (v) {
       a.href = v.includes("@") && !v.startsWith("http") ? `mailto:${v}` : v;
       if (v.startsWith("http")) { a.target = "_blank"; a.rel = "noopener"; }
     } else {
       a.removeAttribute("href");
-      a.setAttribute("aria-disabled", "true");
-      a.title = "Coming soon";
-      a.insertAdjacentHTML("beforeend", ` <span class="soon">· soon</span>`);
     }
   });
 }

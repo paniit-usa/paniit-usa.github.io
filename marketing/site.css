@@ -80,8 +80,6 @@ section.block.white { background: white; }
 .btn-ghost:hover { background: rgba(255,255,255,0.12); }
 .btn-outline { border-color: var(--navy); color: var(--navy); background: white; }
 .btn-outline:hover { background: #f0f4f8; }
-.btn[aria-disabled="true"] { opacity: 0.6; cursor: not-allowed; transform: none; }
-.btn .soon { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.8; }
 
 /* ── Grid & cards ── */
 .grid { display: grid; gap: 1.25rem; }
@@ -203,3 +201,6 @@ footer.site a { color: var(--muted); }
   .reveal { opacity: 1; transform: none; transition: none; }
   .card, .btn, .feature { transition: none; }
 }
+
+/* Buttons without a link yet still look and feel clickable */
+a.btn:not([href]) { cursor: pointer; }

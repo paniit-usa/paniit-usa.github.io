@@ -1,13 +1,15 @@
 /* ── Rethinking PANIIT content ──
    Edit this file to update the site; the pages render from it.
    Status values: "proposed", "conceptual", "discussion".
-   CONTACT: leave a link "" to show a disabled "Coming soon" button. */
+   CONTACT: any link left "" uses `fallback` instead.
+   PLACEHOLDER: the @iit.org addresses below are made up — replace with real ones. */
 
 const CONTACT = {
-  shareIdeas: "",     // e.g. a Google Form for ideas & feedback
-  volunteer: "",      // e.g. a Google Form for volunteers
-  workshop: "",       // Young IITians Workshop interest form
-  email: ""           // e.g. "rethinking@iit.org" (shown as a mailto link)
+  shareIdeas: "rethinking@iit.org",     // e.g. a Google Form for ideas & feedback
+  volunteer: "rethinking@iit.org",      // e.g. a Google Form for volunteers
+  workshop: "youngiitians@iit.org",       // Young IITians Workshop interest form
+  email: "rethinking@iit.org",          // e.g. "rethinking@iit.org" (shown as a mailto link)
+  fallback: "rethinking@iit.org"        // used by every button above that has no link of its own
 };
 
 const PILLARS = [
