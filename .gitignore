@@ -12,3 +12,8 @@ docs/~$*
 mentorships/Academic_Mentoring.pdf
 services/*.pptx
 slides/Nov-SAT_*.pptx
+
+# Draft source documents (not published)
+docs/*.docx
+docs/*.md
+docs/*.pptx
